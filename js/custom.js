@@ -1,4 +1,11 @@
 $(document).ready(function(){
+	// Pasar intro 
+	$('.intro .button').on('click', function(){
+		$(this).closest('.intro').fadeOut('400', function(){
+			$('.row.titulo, .row.barra, .row.numpaso, .row.contenedor').show();
+		});
+	});
+
 	// Slider pasos
 	var mainSlider 	= 	$("#slider-pasos").slider({
 							tooltip: 'hide',
@@ -33,7 +40,11 @@ $(document).ready(function(){
 		$('.contenedor > div > ul').css({'margin-left': '-' + slideWidth + 'px'});
 
 		// Adecuar tamaño 
-		if( newValue == 2 ){
+		if( newValue == 1 ){
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3').css({'height': 400})
+								  .find('li#step-' + newValue).css({'width': $('#size-1').width() });
+		}
+		else if( newValue == 2 ){
 			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-10 col-md-offset-1').css({'height': 540})
 								  .find('li#step-' + newValue).css({'width': $('#size-2').width() });
 		}
@@ -41,10 +52,15 @@ $(document).ready(function(){
 			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-10 col-md-offset-1').css({'height': 640})
 								  .find('li#step-' + newValue).css({'width': $('#size-2').width() });	
 		}
-		else if( newValue == 1 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3').css({'height': 400})
-								  .find('li#step-' + newValue).css({'width': $('#size-1').width() });
+		else if( newValue == 4 ){
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-8 col-md-offset-2').css({'height': 420})
+								  .find('li#step-' + newValue).css({'width': $('#size-3').width() });	
 		}
+		else if( newValue == 5 ){
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3').css({'height': 400})
+								  .find('li#step-' + newValue).css({'width': $('#size-1').width() });	
+		}
+		
 	});
 
 	// Slider rango de precios 
@@ -60,8 +76,19 @@ $(document).ready(function(){
 						});
 
 
+	// Paso 4 cambio de pantalla 
+	$("#step-4").on('click', '.button.interno:not(.back)', function(){
+		$('.phone-details').hide();
+		$('.phone-plan').show();
+	});
+
+	$("#step-4").on('click', '.button.back.interno', function(){
+		$('.phone-plan').hide();
+		$('.phone-details').show();
+	});
+
 	// Avanzar en formulario 
-	$("#contenedor").on('click', 'a.button,a.image', function(e){
+	$("#contenedor").on('click', 'a.button:not(.interno),a.image', function(e){
 		var $this = $(this), step = $this.data('step');
 
 		console.log( step );
