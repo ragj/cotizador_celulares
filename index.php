@@ -349,25 +349,24 @@
                             <div class="planes col-md-10 col-md-offset-1">
                                 <div class="col-md-6">
                                     <span>Disfruta tu nuevo plan <br> a la medida</span>
-                                    <a class="button nueva" href="javascript:void(0);">Nueva línea</a>
+                                    <a class="button nueva" href="javascript:void(0);" data-step="5">Nueva línea</a>
                                 </div>
                                 <div class="col-md-6">
                                     <span>Tu ha expirado</span>
-                                    <a class="button renovacion" href="javascript:void(0);">Renovación</a>
+                                    <a class="button renovacion" href="javascript:void(0);" data-step="5">Renovación</a>
                                 </div>
                                 <div class="clear"></div>
                                 <div class="col-md-6">
                                     <span>Existen nuevas posibilidades <br> a tus necesidades</span>
-                                    <a class="button cambio" href="javascript:void(0);">Cambio de plan</a>
+                                    <a class="button cambio" href="javascript:void(0);" data-step="5">Cambio de plan</a>
                                 </div>
                                 <div class="col-md-6">
                                     <span>Cambia de compañia <br> sin perder tu número</span>
-                                    <a class="button porta" href="javascript:void(0);">Portabilidad</a>
+                                    <a class="button porta" href="javascript:void(0);" data-step="5">Portabilidad</a>
                                 </div>
                                 <div class="buttons col-md-12">
-                                    <a class="button back interno" href="javascript:void(0);" data-step="3">
+                                    <a class="button back" href="javascript:void(0);" data-step="3">
     <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar </a>
-                                    <a class="button" href="javascript:void(0);" data-step="5">Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                 </div>
                             </div>              
                         </li>
