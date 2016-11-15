@@ -50,15 +50,23 @@ $(document).ready(function(){
 		}
 		else if( newValue == 3 ){
 			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-10 col-md-offset-1').css({'height': 640})
-								  .find('li#step-' + newValue).css({'width': $('#size-2').width() });	
+								  .find('li#step-' + newValue).css({'width': $('#size-2').width() });
 		}
 		else if( newValue == 4 ){
 			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-8 col-md-offset-2').css({'height': 420})
-								  .find('li#step-' + newValue).css({'width': $('#size-3').width() });	
+								  .find('li#step-' + newValue).css({'width': $('#size-3').width() });
 		}
 		else if( newValue == 5 ){
 			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3').css({'height': 400})
-								  .find('li#step-' + newValue).css({'width': $('#size-1').width() });	
+								  .find('li#step-' + newValue).css({'width': $('#size-1').width() });
+		}
+		else if( newValue == 6 ){
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-8 col-md-offset-2').css({'height': 400})
+								  .find('li#step-' + newValue).css({'width': $('#size-3').width() });
+		}
+		else if( newValue == 7 ){
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3').css({'height': 350})
+								  .find('li#step-' + newValue).css({'width': $('#size-1').width() });
 		}
 		
 	});

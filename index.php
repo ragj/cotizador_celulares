@@ -352,7 +352,7 @@
                                     <a class="button nueva" href="javascript:void(0);" data-step="5">Nueva línea</a>
                                 </div>
                                 <div class="col-md-6">
-                                    <span>Tu ha expirado</span>
+                                    <span>Tu plan ha expirado</span>
                                     <a class="button renovacion" href="javascript:void(0);" data-step="5">Renovación</a>
                                 </div>
                                 <div class="clear"></div>
@@ -370,8 +370,60 @@
                                 </div>
                             </div>              
                         </li>
-    					<li class="step step-6" id="step-6"></li>
-    					<li class="step step-7" id="step-7"></li>
+    					<li class="step step-6" id="step-6">
+                            <div class="formulario col-md-10 col-md-offset-1">
+                                <form id="datos-clientes">
+                                    <div class="col-md-4">
+                                        <input type="text" name="nombre" class="input-form" placeholder="Nombre(s)">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="apaterno" class="input-form" placeholder="Apellido Paterno">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="amaterno" class="input-form" placeholder="Apellido Materno">
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="tel_cel" class="input-form" placeholder="Tel Celular">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="tel_fijo" class="input-form" placeholder="Tel Fijo">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="email" name="email" class="input-form" placeholder="Correo electrónico">
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="calle" class="input-form" placeholder="Calle">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="num_ext" class="input-form small" placeholder="No. Ext.">
+                                        <input type="text" name="num_int" class="input-form small" placeholder="No. Int.">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="cp" class="input-form" placeholder="Código Postal">
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="colonia" class="input-form" placeholder="Colonia">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="button" href="javascript:void(0);" data-step="6">Enviar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                    </div>
+                                </form>
+                                <div class="buttons col-md-12">
+                                    <a class="button back" href="javascript:void(0);" data-step="4">
+    <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar </a>
+                                </div>
+                            </div>               
+                        </li>
+    					<li class="step step-7" id="step-7">
+                            <div class="exito col-md-10 col-md-offset-1">
+                                <h2>Tu trámite se ha generado correctamente con el </h2>
+                                <h3>Folio: 39348349</h3>
+                                <h4>Recuerda tener tu folio a la mano</h4>
+                            </div>
+                        </li>
     				</ul>
     			</div>
     		</div>

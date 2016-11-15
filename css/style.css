@@ -949,6 +949,66 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	margin-top: 50px;
 }
 
+/** Paso 6 **/
+.contenedor > div > ul li div.formulario {
+	margin-top: 20px;
+	height: auto;
+	max-height: initial;
+}
+
+.contenedor > div > ul li div.formulario input {
+	border-radius: 10px;
+	background-color: #eee;
+    border: 1px solid #aaa;
+    width: 90%;
+    margin: 3px 5% 18px;
+    padding: 3px 5px;
+    line-height: 32px;
+    float: left;
+}
+
+.contenedor > div > ul li div.formulario input.small {
+	width: 40%;
+}
+
+.contenedor > div > ul li div.formulario a.button {
+    margin-top: 3px;
+}
+
+/** Paso 7 **/
+.contenedor > div > ul li div.exito {
+	margin-top: 20px;
+	height: auto;
+	max-height: initial;
+}
+
+.contenedor > div > ul li div.exito h2 {
+	 color: #cb2879;
+	 text-transform: uppercase;
+	 font-size: 22px;
+	 text-align: center;
+	 margin: 45px auto 10px;
+	 width: 100%;
+}
+
+.contenedor > div > ul li div.exito h3 {
+	 color: #02aae3;
+	 text-transform: uppercase;
+	 font-size: 18px;
+	 text-align: center;
+	 margin: 45px auto 10px;
+	 width: 100%;
+}
+
+.contenedor > div > ul li div.exito h4 {
+	 color: #888;
+	 text-transform: uppercase;
+	 font-size: 14px;
+	 text-align: center;
+	 margin: 45px auto 10px;
+	 width: 100%;
+}
+
 /** Banners **/
 .banners {
 	background: rgba(0, 0, 0, 0.8);
