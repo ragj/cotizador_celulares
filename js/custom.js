@@ -41,31 +41,31 @@ $(document).ready(function(){
 
 		// Adecuar tamaño 
 		if( newValue == 1 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3').css({'height': 400})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1').css({'height': 400})
 								  .find('li#step-' + newValue).css({'width': $('#size-1').width() });
 		}
 		else if( newValue == 2 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-10 col-md-offset-1').css({'height': 540})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1').css({'height': 540})
 								  .find('li#step-' + newValue).css({'width': $('#size-2').width() });
 		}
 		else if( newValue == 3 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-10 col-md-offset-1').css({'height': 640})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1').css({'height': 640})
 								  .find('li#step-' + newValue).css({'width': $('#size-2').width() });
 		}
 		else if( newValue == 4 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-8 col-md-offset-2').css({'height': 420})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1').css({'height': 420})
 								  .find('li#step-' + newValue).css({'width': $('#size-3').width() });
 		}
 		else if( newValue == 5 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3').css({'height': 400})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1').css({'height': 400})
 								  .find('li#step-' + newValue).css({'width': $('#size-1').width() });
 		}
 		else if( newValue == 6 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-8 col-md-offset-2').css({'height': 400})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1').css({'height': 400})
 								  .find('li#step-' + newValue).css({'width': $('#size-3').width() });
 		}
 		else if( newValue == 7 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3').css({'height': 350})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1').css({'height': 350})
 								  .find('li#step-' + newValue).css({'width': $('#size-1').width() });
 		}
 		

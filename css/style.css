@@ -338,6 +338,7 @@ body {
 	padding: 0px;
     box-shadow: none;
     opacity: 0;
+    min-height: 0px;
 }
 
 .contenedor > div ul {
@@ -440,7 +441,7 @@ body {
 }
 
 .presupuesto .slider.slider-horizontal .slider-tick-label-container .slider-tick-label {
-	width: 53.7px;
+	width: 6.3%;
 	text-align: center;
 	font-size: 10px;
 }
@@ -1136,4 +1137,41 @@ div.detalle-planes div.row-cell div.cell.radio input {
 
 .clear {
 	clear: both;
+}
+
+/** Versión para móvil **/
+@media screen and (max-width: 769px) {
+	.titulo h1 {
+		font-size: 32px;
+	}
+
+	.newsletter {
+		padding: 10px 0px;
+	}
+
+	.newsletter form {
+		width: 100%;
+		margin-top: 5px;
+	}
+
+	.newsletter h2 {
+		font-size: 20px;
+	}
+
+	.contenedor > div div.phones ul li input {
+		width: 16px; 
+		height: 16px;
+	}
+
+	div.detalle-planes div.row-cell div.cell.radio input {
+		width: 16px; 
+		height: 16px;
+	}
+
+	.contenedor a.button {
+		width: 150px; 
+		height: 32px; 
+		line-height: 32px;
+		font-size: 12px;
+	}
 }
