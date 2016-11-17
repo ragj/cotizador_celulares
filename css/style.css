@@ -471,6 +471,12 @@ div.detalle-planes {
 	overflow: hidden;
 }
 
+div.detalle-planes.loading {
+	background: transparent url(../img/loader.gif) center bottom no-repeat;
+	background-size: 6%;
+	min-height: 130px;
+}
+
 div.detalle-planes > div {
 	float: left;
 	margin: 0px;
@@ -906,7 +912,9 @@ div.detalle-planes div.row-cell div.cell.radio input {
 .contenedor > div > ul li div.planes {
 	margin-top: 20px;
 	height: auto;
-	max-height: initial;
+	max-height: 285px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .contenedor > div > ul li div.planes div {

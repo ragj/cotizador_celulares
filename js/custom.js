@@ -111,14 +111,15 @@ $(document).ready(function(){
 			rango=4;
 		}
 
+		$('.detalle-planes').addClass('loading').find('.row-cell').remove();
+
 		$.post('/php/functions.php', {"accion": "ObtienePlanes",  "rango": rango, "marca" : marca}, function(data){
 
 			//console.log( data.xml );
 
 			$('.detalle-planes .row-cell').remove();
 			$.each( data.plan, function(index, element){
-				console.log(element.html);
-				$('.detalle-planes').append( element.html );
+				$('.detalle-planes').removeClass('loading').append( element.html );
 			});
 
 		});
