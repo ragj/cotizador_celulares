@@ -479,7 +479,7 @@ div.detalle-planes > div {
 
 div.detalle-planes > div.header {
 	height: 50px;
-	width: 17.5%;
+	width: 16.5%;
 	padding-top: 35px; 
 	font-size: 12px;
 	text-transform: uppercase;
@@ -490,7 +490,7 @@ div.detalle-planes > div.header {
 }
 
 div.detalle-planes > div.header.titulo-plan {
-	width: 23%;
+	width: 26%;
 	background: transparent url(../img/planes_telcel.png) center bottom no-repeat;
 	background-size: contain;
 }
@@ -532,7 +532,7 @@ div.detalle-planes > div.row-cell:nth-child(even){
 
 div.detalle-planes > div.row-cell div.cell {
 	height: 45px;
-	width: 17.5%;
+	width: 16.5%;
 	font-size: 12px;
 	line-height: 45px;
 	text-transform: uppercase;
@@ -544,8 +544,9 @@ div.detalle-planes > div.row-cell div.cell {
 
 div.detalle-planes div.row-cell div.cell.titulo-plan {
 	font-family: 'gotham-bold';
-	font-size: 16px;
-	width: 23%;
+	/*font-size: 16px;*/
+	font-size: 13px;
+	width: 26%;
 }
 
 div.detalle-planes div.row-cell div.cell .check {

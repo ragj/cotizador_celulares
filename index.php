@@ -22,7 +22,7 @@
 
     <script src="https://use.fontawesome.com/d9394ef45b.js"></script>
   </head>
-  <body>
+  <body data-marca="">
     <div id="wrapper">
     	<div class="container-fluid">
             <div class="row header">
@@ -101,20 +101,20 @@
     					<li class="step step-1" id="step-1">
                             <div class="col-md-4 col-md-offset-1 col-sm-6">
                                 <p>Los <b>mejores smartsphones</b> <br> del mercado a tu alcance</p>
-                                <a class="image" href="javascript:void(0);" data-step="1">
+                                <a class="image" href="javascript:void(0);" data-step="1" data-marca="Android">
                                     <img src="img/tel_android.png">
                                 </a>
-                                <a class="button" href="javascript:void(0);" data-step="1">
+                                <a class="button" href="javascript:void(0);" data-step="1" data-marca="Android">
                                     Seleccionar 
                                     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
                                 </a>
                             </div>
                             <div class="col-md-4 col-md-offset-2 col-sm-6">
                                 <p>Los <b>iPhone de tus sueños</b> <br> está aquí</p>
-                                <a class="image" href="javascript:void(0);" data-step="1">
+                                <a class="image" href="javascript:void(0);" data-step="1" data-marca="Iphone">
                                     <img src="img/tel_iphone.png">
                                 </a>
-                                <a class="button" href="javascript:void(0);" data-step="1">
+                                <a class="button" href="javascript:void(0);" data-step="1" data-marca="Iphone">
                                     Seleccionar 
                                     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
                                 </a>
@@ -139,38 +139,7 @@
                                         <div class="header radio"></div>
                                         <div class="clear"></div>
                                         <!-- Filas -->
-                                        <div class="row-cell">
-                                            <div class="cell titulo-plan"> Mixto 3000</div>
-                                            <div class="cell minutos">Ilimitado</div>
-                                            <div class="cell mensajes">Ilimitado</div>
-                                            <div class="cell internet">3000 MB</div>
-                                            <div class="cell redes"> <span class="check"></span> </div>
-                                            <div class="cell radio"> <input type="radio" name="plan" value="1" checked="checked"> </div>
-                                        </div>
-                                        <div class="row-cell">
-                                            <div class="cell titulo-plan"> Mixto 2000</div>
-                                            <div class="cell minutos">Ilimitado</div>
-                                            <div class="cell mensajes">Ilimitado</div>
-                                            <div class="cell internet">2000 MB</div>
-                                            <div class="cell redes"> </div>
-                                            <div class="cell radio"> <input type="radio" name="plan" value="2"> </div>
-                                        </div>
-                                        <div class="row-cell">
-                                            <div class="cell titulo-plan"> Mixto 3000</div>
-                                            <div class="cell minutos">Ilimitado</div>
-                                            <div class="cell mensajes">Ilimitado</div>
-                                            <div class="cell internet">3000 MB</div>
-                                            <div class="cell redes"> <span class="check"></span> </div>
-                                            <div class="cell radio"> <input type="radio" name="plan" value="3"> </div>
-                                        </div>
-                                        <div class="row-cell">
-                                            <div class="cell titulo-plan"> Mixto 2000</div>
-                                            <div class="cell minutos">Ilimitado</div>
-                                            <div class="cell mensajes">Ilimitado</div>
-                                            <div class="cell internet">2000 MB</div>
-                                            <div class="cell redes"> <span class="check"></span> </div>
-                                            <div class="cell radio"> <input type="radio" name="plan" value="4"> </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                                 <div class="buttons col-md-12 col-sm-12">
