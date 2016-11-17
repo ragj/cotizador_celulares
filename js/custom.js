@@ -239,5 +239,12 @@ $(document).ready(function(){
 		width: '60%'
 	});
 
+	$('#step-3 .marcas ul').on('click', 'li a', function(event) {
+		event.preventDefault();
+		var marca = $(this).parent(), nombre_marca = marca.attr('class').trim();
+		$('#step-3 .phones li').hide().filter( "." + nombre_marca ).show();
+		console.log(marca);
+		$('#step-3 .marcas li').removeClass('active').filter( marca ).addClass('active');
+	});
 
 });

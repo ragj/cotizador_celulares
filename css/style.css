@@ -650,6 +650,9 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	background-image: url(../img/marcas/zte.png);
 }
 
+.marcas ul li.apple { 
+	display: none;
+}
 .marcas ul li.apple a {
 	background-image: url(../img/marcas/apple.png);
 }
