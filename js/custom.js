@@ -98,6 +98,12 @@ $(document).ready(function(){
 		var newVal = $('#slider-presupuesto').data('slider').getValue();
 		var marca = $('body').data('marca'), rango=1;
 
+		if( marca == "Iphone" ){
+			$('#step-3 div.marcas').hide();
+		}else{
+			$('#step-3 div.marcas').show();
+		}
+
 		if(newVal < 400){
 			rango=1;
 		}
@@ -161,8 +167,26 @@ $(document).ready(function(){
 			});
 			
 		} else if( step == 2 ){
+			
+			var marca = $('#step-1').find('a.image.selected').data('marca');
+			
+			if( marca == "Iphone" ){
+				
+				$('#step-3 div.marcas').hide();
+
+			}else{
+				
+				$('#step-3 div.marcas').show();
+				$.post('/php/functions.php', { "accion" : "ObtieneEquiposRapido" }, function(data) {
+					console.log( data );
+				});
+				
+			}
 			var plan = $('input[type=radio]').val();
-			console.log( "El usuario eligió el plan " + plan );
+
+
+
+
 			mainSlider.slider('setValue', (step + 1), true);
 			mainSlider.trigger('change', [event]);
 		}
