@@ -10,23 +10,13 @@ if( !empty( $_POST) ){
 		
 		case 'ObtieneEquiposRapido':
 
-			$curl = curl_init();
+			$url = sprintf("http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneMarcasAvanzadoAK?tipoPago=%s&tarifario=%s",1,1);
 
-			curl_setopt_array($curl, array(
-				CURLOPT_PORT => "8020",
-				CURLOPT_URL => sprintf("http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneMarcasAvanzadoAK?tipoPago=%s&tarifario=%s",1,1),
-				CURLOPT_RETURNTRANSFER => true,
-				CURLOPT_ENCODING => "",
-				CURLOPT_MAXREDIRS => 10,
-				CURLOPT_TIMEOUT => 300,
-				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-				CURLOPT_CUSTOMREQUEST => "GET"  ,
-				));
-
-
-			$response = curl_exec($curl);
-			$err = curl_error($curl);
-			curl_close($curl);
+			$equiposRapido = new Curl( $url );
+				
+			$responseEquipos = $equiposRapido->getResponse();
+			$err = $equiposRapido->getError();
+			$equiposRapido->closeCurl();
 
 			if ($err) 
 			{
@@ -35,7 +25,7 @@ if( !empty( $_POST) ){
 			} 
 			else 
 			{
-				$xml = simplexml_load_string($response);
+				$xml = simplexml_load_string($responseEquipos);
 				$marcas = array();
 				$modelos = array();
 				$jj = 1;
@@ -44,23 +34,14 @@ if( !empty( $_POST) ){
 					$marca = new stdClass();
 	
 					$marca->html = '<li class="'.strtolower( $xmls->BRAND ).'"><a href="javascript:void(0);"></a></li>';
-					$curl_modelos = curl_init();
 
-					curl_setopt_array($curl_modelos, array(
-			  		CURLOPT_PORT => "8020",
-			  		CURLOPT_URL => sprintf( "http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneModelosdeMarcasAK?Marca=%s&tarifario=%s", $xmls->BRAND, 1 ),
-			  		CURLOPT_RETURNTRANSFER => true,
-			  		CURLOPT_ENCODING => "",
-			  		CURLOPT_MAXREDIRS => 10,
-			  		CURLOPT_TIMEOUT => 300,
-			  		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			  		CURLOPT_CUSTOMREQUEST => "GET"  ,
-					));
-			
-						
-					$response_modelos = curl_exec($curl_modelos);
-					$err = curl_error($curl_modelos);
-					curl_close($curl_modelos);
+					$url = sprintf( "http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneModelosdeMarcasAK?Marca=%s&tarifario=%s", $xmls->BRAND, 1 );
+
+					$obtieneModelos = new Curl( $url );
+				
+					$responseModelos = $obtieneModelos->getResponse();
+					$err = $obtieneModelos->getError();
+					$obtieneModelos->closeCurl();
 
 					if ($err) 
 					{
@@ -69,7 +50,7 @@ if( !empty( $_POST) ){
 					else 
 					{
 
-						$xml_modelos = simplexml_load_string($response_modelos);
+						$xml_modelos = simplexml_load_string($responseModelos);
 						$modelo = array();
 						
 						foreach ($xml_modelos->SPS_SCL_ObtieneEquiposNuevoDataAK_Result as $xmls_modelo) 
@@ -105,9 +86,6 @@ if( !empty( $_POST) ){
 
 		case 'ObtienePlanes':
 
-
-		$curl = curl_init();
-
 		$marca = ( $_POST['marca'] == 'Iphone' ) ? "Iphone" : "" ;
 		$url = sprintf("http://smartcen.net:8020/CotizadorControlador.asmx/ObtienePlanesRango?segmento=%s&rango=%s&claseplan=%s",1,$_POST['rango'],$marca);
 		$curlPlanes = new Curl( $url );
@@ -138,7 +116,7 @@ if( !empty( $_POST) ){
 				
 				$curlPlanesDetalle = new Curl( $url_curl );
 				
-				$response = $curlPlanesDetalle->getResponse();
+				$responseDetalle = $curlPlanesDetalle->getResponse();
 				$err = $curlPlanesDetalle->getError();
 				$curlPlanesDetalle->closeCurl();
 
@@ -148,7 +126,7 @@ if( !empty( $_POST) ){
 					
 				} else {
 
-					$xml_detalles = simplexml_load_string($response);
+					$xml_detalles = simplexml_load_string($responseDetalle);
 
 					$resultado->xml = $xml_detalles;
 
