@@ -460,15 +460,60 @@ body {
 div.planes {
 	margin-top: 35px; 
 	overflow: hidden;
-	height: 240px;
-    max-height: 240px;
-    overflow-y: scroll;
+}
+
+div.planes > div.header {
+	height: 55px;
+	width: 16.5%;
+	padding: 5px;
+	padding-top: 35px; 
+	font-size: 12px !important;
+	text-transform: uppercase;
+	text-align: center;
+	color: #114b95;
+	font-family: 'gotham-bold';
+	margin-bottom: 10px;
+
+	float: left;
+	margin: 0px;
+}
+
+div.planes > div.header.titulo-plan {
+	width: 26%;
+	background: transparent url(../img/planes_telcel.png) center bottom no-repeat;
+	background-size: contain;
+}
+
+div.planes > div.header.minutos {
+	background: transparent url(../img/minutos.png) center top no-repeat;
+	background-size: 20%;
+} 
+
+div.planes > div.header.mensajes {
+	background: transparent url(../img/mensajes.png) center top no-repeat;
+	background-size: 20%;
+} 
+
+div.planes > div.header.internet {
+	background: transparent url(../img/internet.png) center top no-repeat;
+	background-size: 20%;
+} 
+
+div.planes > div.header.redes {
+	background: transparent url(../img/redes_sociales.png) center top no-repeat;
+	background-size: 60%;
+} 
+
+div.planes > div.header.radio {
+	width: 6%;
 }
 
 div.detalle-planes {
 	width: 100%;
 	display: block;
-	overflow: hidden;
+	max-height: 225px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 div.detalle-planes.loading {
@@ -481,48 +526,6 @@ div.detalle-planes > div {
 	float: left;
 	margin: 0px;
 	padding: 5px;
-}
-
-div.detalle-planes > div.header {
-	height: 50px;
-	width: 16.5%;
-	padding-top: 35px; 
-	font-size: 12px;
-	text-transform: uppercase;
-	text-align: center;
-	color: #114b95;
-	font-family: 'gotham-bold';
-	margin-bottom: 10px;
-}
-
-div.detalle-planes > div.header.titulo-plan {
-	width: 26%;
-	background: transparent url(../img/planes_telcel.png) center bottom no-repeat;
-	background-size: contain;
-}
-
-div.detalle-planes > div.header.minutos {
-	background: transparent url(../img/minutos.png) center top no-repeat;
-	background-size: 20%;
-} 
-
-div.detalle-planes > div.header.mensajes {
-	background: transparent url(../img/mensajes.png) center top no-repeat;
-	background-size: 20%;
-} 
-
-div.detalle-planes > div.header.internet {
-	background: transparent url(../img/internet.png) center top no-repeat;
-	background-size: 20%;
-} 
-
-div.detalle-planes > div.header.redes {
-	background: transparent url(../img/redes_sociales.png) center top no-repeat;
-	background-size: 60%;
-} 
-
-div.detalle-planes > div.header.radio {
-	width: 6%;
 }
 
 div.detalle-planes > div.row-cell {
@@ -912,9 +915,7 @@ div.detalle-planes div.row-cell div.cell.radio input {
 .contenedor > div > ul li div.planes {
 	margin-top: 20px;
 	height: auto;
-	max-height: 285px;
-    overflow: hidden;
-    overflow-y: scroll;
+	max-height: initial;
 }
 
 .contenedor > div > ul li div.planes div {

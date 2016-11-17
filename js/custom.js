@@ -25,7 +25,7 @@ $(document).ready(function(){
 		ticks: [1, 2, 3, 4, 5, 6, 7],
 		ticks_labels: ['1', '2', '3', '4', '5', '6', '7'],
 		ticks_snap_bounds: 0,
-		enabled: true
+		enabled: false
 	});
 
 	// Cambiar textos asociados a cada paso

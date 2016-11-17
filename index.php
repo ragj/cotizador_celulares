@@ -129,15 +129,15 @@
                                     <input id="slider-presupuesto" data-slider-id='ex2Slider' type="text" data-slider-min="0" data-slider-max="1500" data-slider-step="100" data-slider-value="300" data-slider-handle="round"/>
                                 </div>
                                 <div class="planes col-md-12">
+                                    <!-- Encabezados -->
+                                    <div class="header titulo-plan"></div>
+                                    <div class="header minutos">Minutos incluidos</div>
+                                    <div class="header mensajes">SMS incluidos</div>
+                                    <div class="header internet">Internet</div>
+                                    <div class="header redes">Redes sociales</div>
+                                    <div class="header radio"></div>
+                                    <div class="clear"></div>
                                     <div class="detalle-planes">
-                                        <!-- Encabezados -->
-                                        <div class="header titulo-plan"></div>
-                                        <div class="header minutos">Minutos incluidos</div>
-                                        <div class="header mensajes">SMS incluidos</div>
-                                        <div class="header internet">Internet</div>
-                                        <div class="header redes">Redes sociales</div>
-                                        <div class="header radio"></div>
-                                        <div class="clear"></div>
                                         <!-- Filas -->
                                         
                                     </div>
