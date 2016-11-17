@@ -155,63 +155,12 @@
                             
                                 <div class="marcas">
                                     <ul>
-                                        <li class="lanix"><a href="javascript:void(0);"></a></li>
-                                        <li class="samsung active"><a href="javascript:void(0);"></a></li>
-                                        <li class="azumi"><a href="javascript:void(0);"></a></li>
-                                        <li class="lg"><a href="javascript:void(0);"></a></li>
-                                        <li class="sony"><a href="javascript:void(0);"></a></li>
-                                        <li class="huawei"><a href="javascript:void(0);"></a></li>
-                                        <li class="htc"><a href="javascript:void(0);"></a></li>
-                                        <li class="zte"><a href="javascript:void(0);"></a></li>
+                                        
                                     </ul>
                                 </div>
                                 <div class="phones">
                                     <ul>
-                                        <li class="col-md-4 col-sm-6">
-                                            <span class="prev-phone"><img src="img/tel_img_no_disponible.png"></span>
-                                            <span class="nombre-phone">Nombre teléfono 1</span>
-                                            <input type="radio" name="telefono" value="1"/>
-                                        </li>
-                                        <li class="col-md-4 col-sm-6">
-                                            <span class="prev-phone"><img src="img/tel_img_no_disponible.png"></span>
-                                            <span class="nombre-phone">Nombre teléfono 2</span>
-                                            <input type="radio" name="telefono" value="2"/>
-                                        </li>
-                                        <li class="col-md-4 col-sm-6">
-                                            <span class="prev-phone"><img src="img/tel_img_no_disponible.png"></span>
-                                            <span class="nombre-phone">Nombre teléfono 3</span>
-                                            <input type="radio" name="telefono" value="3"/>
-                                        </li>
-                                        <li class="col-md-4 col-sm-6">
-                                            <span class="prev-phone"><img src="img/tel_img_no_disponible.png"></span>
-                                            <span class="nombre-phone">Nombre teléfono 4</span>
-                                            <input type="radio" name="telefono" value="4"/>
-                                        </li>
-                                        <li class="col-md-4 col-sm-6">
-                                            <span class="prev-phone"><img src="img/tel_img_no_disponible.png"></span>
-                                            <span class="nombre-phone">Nombre teléfono 5</span>
-                                            <input type="radio" name="telefono" value="5"/>
-                                        </li>
-                                        <li class="col-md-4 col-sm-6">
-                                            <span class="prev-phone"><img src="img/tel_img_no_disponible.png"></span>
-                                            <span class="nombre-phone">Nombre teléfono 6</span>
-                                            <input type="radio" name="telefono" value="6"/>
-                                        </li>
-                                        <li class="col-md-4 col-sm-6">
-                                            <span class="prev-phone"><img src="img/tel_img_no_disponible.png"></span>
-                                            <span class="nombre-phone">Nombre teléfono 4</span>
-                                            <input type="radio" name="telefono" value="4"/>
-                                        </li>
-                                        <li class="col-md-4 col-sm-6">
-                                            <span class="prev-phone"><img src="img/tel_img_no_disponible.png"></span>
-                                            <span class="nombre-phone">Nombre teléfono 5</span>
-                                            <input type="radio" name="telefono" value="5"/>
-                                        </li>
-                                        <li class="col-md-4 col-sm-6">
-                                            <span class="prev-phone"><img src="img/tel_img_no_disponible.png"></span>
-                                            <span class="nombre-phone">Nombre teléfono 6</span>
-                                            <input type="radio" name="telefono" value="6"/>
-                                        </li>
+                                        
                                     </ul>
                                 </div>
                                 <div class="buttons col-md-12 col-sm-12">

@@ -169,19 +169,26 @@ $(document).ready(function(){
 		} else if( step == 2 ){
 			
 			var marca = $('#step-1').find('a.image.selected').data('marca');
-			
-			if( marca == "Iphone" ){
 				
-				$('#step-3 div.marcas').hide();
-
-			}else{
-				
+			if( marca == 'Android' ){
 				$('#step-3 div.marcas').show();
-				$.post('/php/functions.php', { "accion" : "ObtieneEquiposRapido" }, function(data) {
-					console.log( data );
-				});
-				
+			}else{
+				$('#step-3 div.marcas').hide();
 			}
+
+			$.post('/php/functions.php', { "accion" : "ObtieneEquiposRapido", "marca" : marca }, function(data) {
+				$('#step-3 div.phones ul').empty();
+				if( data.exito ){
+					$.each( data.marcas, function(index, element){
+						$('#step-3 div.marcas ul').append( element.html );
+					});
+					$.each( data.modelos, function(index, element){
+						$('#step-3 div.phones ul').append( element.html );
+					});
+				}
+			});
+				
+			
 			var plan = $('input[type=radio]').val();
 
 
