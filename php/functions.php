@@ -41,6 +41,8 @@ if( !empty( $_POST) ){
 				
 				// $planDetalle = $detallesPlanRango;
 
+
+
 				$planDetalle = str_replace(" ", "%20", $planDetalle->plan );
 				$curl = curl_init();
 
@@ -74,6 +76,9 @@ if( !empty( $_POST) ){
 
 
 					$detalle_plan = new stdClass();
+
+					$checked = ( $i == 1 ) ? 'checked' : '';
+
 					$detalle_plan->html='
 					<div class="row-cell">
 						<div class="cell titulo-plan">'.$xml_detalles->SPS_SCL_ObtenDetallesPlanRango_Result->plan.'</div> 
@@ -81,7 +86,7 @@ if( !empty( $_POST) ){
 						<div class="cell mensajes">'.$xml_detalles->SPS_SCL_ObtenDetallesPlanRango_Result->SMS.'</div>
 						<div class="cell internet">'.$xml_detalles->SPS_SCL_ObtenDetallesPlanRango_Result->Megas.'</div>
 						<div class="cell redes"> <span class="check"></span> </div>
-						<div class="cell radio"> <input type="radio" name="plan" value='.$xml_detalles->SPS_SCL_ObtenDetallesPlanRango_Result->plan.'checked="checked"></div>';
+						<div class="cell radio"> <input type="radio" name="plan" value="'.$xml_detalles->SPS_SCL_ObtenDetallesPlanRango_Result->plan.'" '.$checked.'></div>';
 					}
 
 					array_push($planes, $detalle_plan);
