@@ -46,7 +46,7 @@ $(document).ready(function(){
 		var slideWidth = 0;
 
 		$('.contenedor > div li#step-' + newValue).prevAll().each(function(i, v){
-			console.log( $(v).width() );
+			// console.log( $(v).width() );
 			slideWidth += $(v).width();
 		});
 
@@ -111,15 +111,14 @@ $(document).ready(function(){
 			rango=4;
 		}
 
-		$('.detalle-planes').addClass('loading').find('.row-cell').remove();
+		$.post('/php/functions.php', { "accion": "ObtienePlanes",  "rango" : rango, "marca" : marca}, function(data){
 
-		$.post('/php/functions.php', {"accion": "ObtienePlanes",  "rango": rango, "marca" : marca}, function(data){
-
-			//console.log( data.xml );
+			console.log( data.xml );
 
 			$('.detalle-planes .row-cell').remove();
 			$.each( data.plan, function(index, element){
-				$('.detalle-planes').removeClass('loading').append( element.html );
+				// console.log(element.html);
+				$('.detalle-planes').append( element.html );
 			});
 
 		});
@@ -153,7 +152,22 @@ $(document).ready(function(){
 
 			mainSlider.slider('setValue', (step + 1), true);
 			mainSlider.trigger('change', [event]);
+
+			$.post('/php/functions.php', { "accion": "ObtienePlanes",  "rango" : 1, "marca" : marca}, function(data){
+
+				$('.detalle-planes .row-cell').remove();
+				$.each( data.plan, function(index, element){
+					// console.log(element.html);
+					$('.detalle-planes').append( element.html );
+				});
+
+			});
 			
+		} else if( step == 2 ){
+			var plan = $('input[type=radio]').val();
+			console.log( "El usuario eligió el plan " + plan );
+			mainSlider.slider('setValue', (step + 1), true);
+			mainSlider.trigger('change', [event]);
 		}
 		else {
 			mainSlider.slider('setValue', (step + 1), true);
@@ -181,7 +195,7 @@ $(document).ready(function(){
 
 		// Previa 
 		if( $this.hasClass('prev-banner') ){ 	
-			console.log( $this );
+			// console.log( $this );
 			lSlide.css({'margin-left': '-' + ws + 'px'}).insertBefore( slides.first() ).parent().find('li').first().animate({'margin-left': '0px'}, 600, 'linear');
 		}
 		else { 			
