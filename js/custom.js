@@ -142,7 +142,7 @@ $(document).ready(function(){
 
 	// Avanzar en formulario 
 	$("#contenedor").on('click', 'a.button:not(.interno),a.image', function(e){
-		var $this = $(this), step = $this.data('step');
+		var $this = $(this), step = $this.data('step'), reloadPlanes = $this.data('reload');
 
 		var marca = $this.data('marca');
 		if( marca ){
@@ -156,15 +156,17 @@ $(document).ready(function(){
 			mainSlider.slider('setValue', (step + 1), true);
 			mainSlider.trigger('change', [event]);
 
-			$('.detalle-planes').addClass('loading').find('.row-cell').remove();
+			if( typeof reloadPlanes !== 'undefined' ){
+				$('.detalle-planes').addClass('loading').find('.row-cell').remove();
 
-			$.post('/php/functions.php', { "accion": "ObtienePlanes",  "rango" : 1, "marca" : marca}, function(data){
-				$.each( data.plan, function(index, element){
-					// console.log(element.html);
-					$('.detalle-planes').removeClass('loading').append( element.html );
+				$.post('/php/functions.php', { "accion": "ObtienePlanes",  "rango" : 1, "marca" : marca}, function(data){
+					$.each( data.plan, function(index, element){
+						// console.log(element.html);
+						$('.detalle-planes').removeClass('loading').append( element.html );
+					});
+
 				});
-
-			});
+			}
 			
 		} else if( step == 2 ){
 			
@@ -176,23 +178,21 @@ $(document).ready(function(){
 				$('#step-3 div.marcas').hide();
 			}
 
+			$('#step-3 div.phones').addClass('loading').find('ul').empty();
+
 			$.post('/php/functions.php', { "accion" : "ObtieneEquiposRapido", "marca" : marca }, function(data) {
-				$('#step-3 div.phones ul').empty();
 				if( data.exito ){
 					$.each( data.marcas, function(index, element){
 						$('#step-3 div.marcas ul').append( element.html );
 					});
 					$.each( data.modelos, function(index, element){
-						$('#step-3 div.phones ul').append( element.html );
+						$('#step-3 div.phones').removeClass('loading').find('ul').append( element.html ).find('li:visible:first input').prop('checked', true);
 					});
 				}
 			});
 				
 			
 			var plan = $('input[type=radio]').val();
-
-
-
 
 			mainSlider.slider('setValue', (step + 1), true);
 			mainSlider.trigger('change', [event]);
@@ -242,7 +242,7 @@ $(document).ready(function(){
 	$('#step-3 .marcas ul').on('click', 'li a', function(event) {
 		event.preventDefault();
 		var marca = $(this).parent(), nombre_marca = marca.attr('class').trim();
-		$('#step-3 .phones li').hide().filter( "." + nombre_marca ).show();
+		$('#step-3 .phones li').hide().filter( "." + nombre_marca ).show().first().find('input').prop('checked', true);
 		console.log(marca);
 		$('#step-3 .marcas li').removeClass('active').filter( marca ).addClass('active');
 	});
