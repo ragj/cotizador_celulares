@@ -664,6 +664,12 @@ div.detalle-planes div.row-cell div.cell.radio input {
     overflow-y: scroll;
 }
 
+.contenedor > div div.phones.loading {
+	background: transparent url(../img/loader.gif) center top no-repeat;
+	background-size: 6%;
+	min-height: 130px;
+}
+
 .contenedor > div div.phones ul {
 	width: 100%;
 	overflow: hidden;

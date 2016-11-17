@@ -178,14 +178,15 @@ $(document).ready(function(){
 				$('#step-3 div.marcas').hide();
 			}
 
+			$('#step-3 div.phones').addClass('loading').find('ul').empty();
+
 			$.post('/php/functions.php', { "accion" : "ObtieneEquiposRapido", "marca" : marca }, function(data) {
-				$('#step-3 div.phones ul').empty();
 				if( data.exito ){
 					$.each( data.marcas, function(index, element){
 						$('#step-3 div.marcas ul').append( element.html );
 					});
 					$.each( data.modelos, function(index, element){
-						$('#step-3 div.phones ul').append( element.html ).find('li:visible:first input').prop('checked', true);
+						$('#step-3 div.phones').removeClass('loading').find('ul').append( element.html ).find('li:visible:first input').prop('checked', true);
 					});
 				}
 			});
