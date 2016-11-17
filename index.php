@@ -101,20 +101,20 @@
     					<li class="step step-1" id="step-1">
                             <div class="col-md-4 col-md-offset-1 col-sm-6">
                                 <p>Los <b>mejores smartsphones</b> <br> del mercado a tu alcance</p>
-                                <a class="image" href="javascript:void(0);" data-step="1" data-marca="Android">
+                                <a class="image" href="javascript:void(0);" data-step="1" data-marca="Android" data-reload="1">
                                     <img src="img/tel_android.png">
                                 </a>
-                                <a class="button" href="javascript:void(0);" data-step="1" data-marca="Android">
+                                <a class="button" href="javascript:void(0);" data-step="1" data-marca="Android" data-reload="1">
                                     Seleccionar 
                                     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
                                 </a>
                             </div>
                             <div class="col-md-4 col-md-offset-2 col-sm-6">
                                 <p>Los <b>iPhone de tus sueños</b> <br> está aquí</p>
-                                <a class="image" href="javascript:void(0);" data-step="1" data-marca="Iphone">
+                                <a class="image" href="javascript:void(0);" data-step="1" data-marca="Iphone" data-reload="1">
                                     <img src="img/tel_iphone.png">
                                 </a>
-                                <a class="button" href="javascript:void(0);" data-step="1" data-marca="Iphone">
+                                <a class="button" href="javascript:void(0);" data-step="1" data-marca="Iphone" data-reload="1">
                                     Seleccionar 
                                     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
                                 </a>
