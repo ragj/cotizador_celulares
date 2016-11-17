@@ -111,14 +111,11 @@ $(document).ready(function(){
 			rango=4;
 		}
 
+		$('.detalle-planes').addClass('loading').find('.row-cell').remove();
 		$.post('/php/functions.php', { "accion": "ObtienePlanes",  "rango" : rango, "marca" : marca}, function(data){
-
-			console.log( data.xml );
-
-			$('.detalle-planes .row-cell').remove();
 			$.each( data.plan, function(index, element){
 				// console.log(element.html);
-				$('.detalle-planes').append( element.html );
+				$('.detalle-planes').removeClass('loading').append( element.html );
 			});
 
 		});
@@ -153,12 +150,12 @@ $(document).ready(function(){
 			mainSlider.slider('setValue', (step + 1), true);
 			mainSlider.trigger('change', [event]);
 
-			$.post('/php/functions.php', { "accion": "ObtienePlanes",  "rango" : 1, "marca" : marca}, function(data){
+			$('.detalle-planes').addClass('loading').find('.row-cell').remove();
 
-				$('.detalle-planes .row-cell').remove();
+			$.post('/php/functions.php', { "accion": "ObtienePlanes",  "rango" : 1, "marca" : marca}, function(data){
 				$.each( data.plan, function(index, element){
 					// console.log(element.html);
-					$('.detalle-planes').append( element.html );
+					$('.detalle-planes').removeClass('loading').append( element.html );
 				});
 
 			});
