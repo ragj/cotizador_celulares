@@ -1,5 +1,7 @@
 <?php
 
+require_once(__DIR__ . '/Curl.php');
+
 $resultado = new stdClass();
 
 if( !empty( $_POST) ){
@@ -7,25 +9,17 @@ if( !empty( $_POST) ){
 	switch ( $_POST['accion'] ) {
 		case 'ObtienePlanes':
 
+
 		$curl = curl_init();
 
 		$marca = ( $_POST['marca'] == 'Iphone' ) ? "Iphone" : "" ;
+		$url = sprintf("http://smartcen.net:8020/CotizadorControlador.asmx/ObtienePlanesRango?segmento=%s&rango=%s&claseplan=%s",1,$_POST['rango'],$marca);
+		$curlPlanes = new Curl( $url );
 
-		curl_setopt_array($curl, array(
-			CURLOPT_PORT => "8020",
-			CURLOPT_URL => sprintf("http://smartcen.net:8020/CotizadorControlador.asmx/ObtienePlanesRango?segmento=%s&rango=%s&claseplan=%s",1,$_POST['rango'],$marca),
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => "",
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => "GET"  ,
-			));
+		$response = $curlPlanes->getResponse();
+		$err = $curlPlanes->getError();
 
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-
-		curl_close($curl);
+		$curlPlanes->closeCurl();
 
 		if ($err) {
 
@@ -44,25 +38,13 @@ if( !empty( $_POST) ){
 
 
 				$planDetalle = str_replace(" ", "%20", $planDetalle->plan );
-				$curl = curl_init();
-
 				$url_curl = sprintf( "http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneDetallePlanRango?Plan=%s", $planDetalle );
-
-				curl_setopt_array($curl, array(
-					CURLOPT_PORT => "8020",
-					CURLOPT_URL => $url_curl,
-					CURLOPT_RETURNTRANSFER => true,
-					CURLOPT_ENCODING => "",
-					CURLOPT_MAXREDIRS => 10,
-					CURLOPT_TIMEOUT => 300,
-					CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-					CURLOPT_CUSTOMREQUEST => "GET"  ,
-					));
-
-
-				$response = curl_exec($curl);
-				$err = curl_error($curl);
-				curl_close($curl);
+				
+				$curlPlanesDetalle = new Curl( $url_curl );
+				
+				$response = $curlPlanesDetalle->getResponse();
+				$err = $curlPlanesDetalle->getError();
+				$curlPlanesDetalle->closeCurl();
 
 				if ($err){
 
