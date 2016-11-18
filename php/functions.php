@@ -63,6 +63,31 @@ if( !empty( $_POST) ){
 								$display = ( $xmls->BRAND == 'APPLE') ? 'none' : 'block' ;
 							}
 
+							$url_modelo_detalle = sprintf( "http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneEquiposRapido?Variable=%s", str_replace(" ", "%20", $xmls_modelo->Modelo) );
+
+
+							$modelo_detallado = new Curl( $url_modelo_detalle );
+								
+							$responseModeloDetallado = $modelo_detallado->getResponse();
+							$err = $modelo_detallado->getError();
+							$modelo_detallado->closeCurl();
+							$xml_detallado = simplexml_load_string($responseModeloDetallado);
+							
+							
+							if( isset( $xml_detallado->SPS_SCL_ObtieneBusquedaRapidaEquipos_Result[0]->Item ) ){
+								$item = $xml_detallado->SPS_SCL_ObtieneBusquedaRapidaEquipos_Result[0]->Item;
+								
+								$url_modelo_detalle = sprintf( "http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneImagenes?item=%s", $item );
+
+								$imagen_modelo = new Curl( $url_modelo_detalle );
+								$responseImagenModelo = $imagen_modelo->getResponse();
+								$err = $imagen_modelo->getError();
+								$imagen_modelo->closeCurl();
+								$xml_imagen = simplexml_load_string($responseImagenModelo);
+								$modelo->imagen = $xml_imagen;
+								$modelo->url_imagen = $url_modelo_detalle;
+							}					
+						
 							$modelo->html = '<li style="display:'.$display.'" class="col-md-4 col-sm-6 '.strtolower( $xmls->BRAND ).'">
 	                                            <span class="prev-phone"><img src="img/tel_img_no_disponible.png"></span>
 	                                            <span class="nombre-phone">'.$xmls_modelo->Modelo.'</span>
@@ -79,6 +104,7 @@ if( !empty( $_POST) ){
 			}
 
 			$resultado->exito = true;
+			$resultado->marcas = $marcas;
 			$resultado->marcas = $marcas;
 			$resultado->modelos = $modelos;
 
