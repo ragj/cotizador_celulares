@@ -1275,3 +1275,7 @@ div.detalle-planes div.row-cell div.cell.radio input {
 		font-size: 12px;
 	}
 }
+
+ a[disabled="disabled"], a.disabled {
+    pointer-events: none;
+}

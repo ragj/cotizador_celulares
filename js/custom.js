@@ -12,6 +12,39 @@
 
 $(document).ready(function(){
 
+	/**********************/
+
+ 	var keys     = [];
+ 	var up = 38,
+ 	down = 40,
+ 	left = 37,
+ 	right = 39,
+ 	A = 65,
+ 	B = 66;
+    var	code = [up,up,down,down,left,right,left,right,B,A];
+    //console.log(code);
+
+    $(document)
+    	.keydown(
+	    	function(e) {
+	    		keys.push( e.keyCode );
+	    		if ( keys.toString().indexOf( code ) >= 0 ){
+	        		e.preventDefault(); // PREVIENE EL SCROLL
+	        
+			        $('body form').find('input[type=text], textarea').each(function(index, el) {
+			        	var placeholder = $(this).attr('placeholder');
+			        	if( placeholder ){
+			        		$(this).val(placeholder);
+			        	}
+			        });
+
+		        	keys = [];
+				}
+			}
+		);
+
+    /**********************/
+
 	// Pasar intro 
 	$('.intro .button').on('click', function(){
 		$(this).closest('.intro').fadeOut('400', function(){
@@ -142,6 +175,10 @@ $(document).ready(function(){
 
 	// Avanzar en formulario 
 	$("#contenedor").on('click', 'a.button:not(.interno),a.image', function(e){
+		if( $(this).hasClass('disabled') ){
+			e.preventDefault();
+			return false;
+		}
 		var $this = $(this), step = $this.data('step'), reloadPlanes = $this.data('reload');
 
 		var marca = $this.data('marca');
@@ -160,10 +197,13 @@ $(document).ready(function(){
 				$('.detalle-planes').addClass('loading').find('.row-cell').remove();
 
 				$.post('/php/functions.php', { "accion": "ObtienePlanes",  "rango" : 1, "marca" : marca}, function(data){
-					$.each( data.plan, function(index, element){
-						// console.log(element.html);
-						$('.detalle-planes').removeClass('loading').append( element.html );
-					});
+					if( data.exito ){
+						$('#step-2 a.button.disabled').removeClass('disabled');
+						$.each( data.plan, function(index, element){
+							// console.log(element.html);
+							$('.detalle-planes').removeClass('loading').append( element.html );
+						});
+					}
 
 				});
 			}
@@ -182,6 +222,7 @@ $(document).ready(function(){
 
 			$.post('/php/functions.php', { "accion" : "ObtieneEquiposRapido", "marca" : marca }, function(data) {
 				if( data.exito ){
+					$('#step-3 a.button.disabled').removeClass('disabled');
 					$.each( data.marcas, function(index, element){
 						$('#step-3 div.marcas ul').append( element.html );
 					});
@@ -207,7 +248,7 @@ $(document).ready(function(){
 
 				$('#step-4 div.phone-details').find('.phone-nombre, .phone-sos, .capacidad, .color').remove();
 				if( data.exito ){
-					
+					// $('#step-4 a.button.disabled').removeClass('disabled');
 					$('#step-4 div.phone-details').prepend( data.html );
 					$('#step-4 div.phone-image img').attr('src', data.imagen );
 					
@@ -283,12 +324,27 @@ $(document).ready(function(){
 	$('#step-4 .phone-details').on('change', 'input.variante', function(event) {
 		var color = $(this).data('variante');
 		$('.phone-plan span.color').removeClass().addClass( 'color '+ color );
+		$('#step-4 a.button').removeClass('disabled');
 	});
 
-	$('#step-4').on('click', '#btn-get-plan', function(event) {
+	$('#step-4 .phone-plan').on('change', 'input.plan', function(event) {
+		var plan = $(this).val();
+		var item = $('#step-4 .phone-details .color input:checked').val();
+		$('#datos-clientes input[name="plan"]').val( plan );
+		$('#datos-clientes input[name="item"]').val( item );
+		
+	});
+
+	$('#step-4').on('click', '#btn-get-plan:not(.disabled)', function(event) {
+		if($(this).hasClass('disabled')){
+			event.preventDefault();
+			event.stopPropagation();
+			return false;
+		}
+
 		event.preventDefault();
 		var plan = $('#step-2 .detalle-planes input:checked').val()
-		var item = $('#step-4 .phone-details .color input:checked').val()
+		var item = $('#step-4 .phone-details .color input:checked').val();
 		$.post('/php/functions.php', { "accion" : "ObtieneResultadosBusqueda", "plan" : plan, "item" : item }, function(data) {
 			$('#step-4 .phone-plan .plan-details').html( "" );
 			if( data.exito ){
@@ -301,6 +357,7 @@ $(document).ready(function(){
 		var boton = $(this);
 		boton.closest('.planes').find('a.button').removeClass('active').filter( $(this) ).addClass('active');
 		var accion = boton.data('accion');
+		$('#datos-clientes input[name="tramite"]').val( accion );
 		console.log( accion );
 	});
 
@@ -326,7 +383,13 @@ $(document).ready(function(){
 				rangelength: [8, 10]
 			},
 			cp: {
-				digits: true
+				digits: true,
+			},
+			municipio: {
+				required: true,
+			},
+			estado: {
+				required: true,
 			}
 		},
 		messages: {
@@ -366,6 +429,12 @@ $(document).ready(function(){
 			colonia: {
 				required: 'Dato requerido'
 			},
+			municipio: {
+				required: 'Dato requerido'
+			},
+			estado: {
+				required: 'Dato requerido'
+			},
 			terms: {
 				required: '*'
 			},
@@ -375,8 +444,16 @@ $(document).ready(function(){
 		submitHandler: function(form){
 			var $form = $(form), values = $form.serialize();
 
-			mainSlider.slider('setValue', 7, true);
-			mainSlider.trigger('change', [event]);
+			$.post('/php/functions.php', values, function(data) {
+				if( data.exito ){
+					$('#folio').text( data.tramite[0] ); 
+					mainSlider.slider('setValue', 7, true);
+					mainSlider.trigger('change', [event]);
+				}else{
+
+				}
+			});
+			
 		}
 	});
 });

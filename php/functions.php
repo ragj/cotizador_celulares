@@ -1,12 +1,86 @@
 <?php
-
 require_once(__DIR__ . '/Curl.php');
+include_once(__DIR__ . '/conxx.php' );
 
 $resultado = new stdClass();
 
 if( !empty( $_POST) ){
 
 	switch ( $_POST['accion'] ) {
+
+		case 'registrar':
+			
+			$resultado->accion = $_POST['accion'];
+
+
+			$query = $pdo->prepare("INSERT INTO 
+										cliente (NombreCliente,ApaternoCliente,AmaternoCliente,CelularCliente,TelefonoFijoCliente,EmailCliente,CalleCliente,NoExteriorCliente,NoInteriorCliente,ColoniaCliente,Del_MunCliente,EstadoCliente,CPcliente) 
+										VALUES 
+											(:nombre,:apaterno,:amaterno,:tel_cel,:tel_fijo,:email,:calle,:num_ext,:num_int,:colonia,:municipio,:estado,:cp);");
+
+			$query->bindParam( 'nombre', $_POST['nombre'] ); 
+			$query->bindParam( 'apaterno', $_POST['apaterno'] ); 
+			$query->bindParam( 'amaterno', $_POST['amaterno'] ); 
+			$query->bindParam( 'tel_cel', $_POST['tel_cel'] ); 
+			$query->bindParam( 'tel_fijo', $_POST['tel_fijo'] ); 
+			$query->bindParam( 'email', $_POST['email'] ); 
+			$query->bindParam( 'calle', $_POST['calle'] ); 
+			$query->bindParam( 'num_ext', $_POST['num_ext'] ); 
+			$query->bindParam( 'num_int', $_POST['num_int'] ); 
+			$query->bindParam( 'cp', $_POST['cp'] ); 
+			$query->bindParam( 'colonia', $_POST['colonia'] ); 
+			$query->bindParam( 'municipio', $_POST['municipio'] ); 
+			$query->bindParam( 'estado', $_POST['estado'] ); 
+
+			if( $registro = $query->execute() ){
+				$resultado->exito = true;
+				$resultado->folio = $pdo->lastInsertId();
+
+				$datos['nombre'] = $_POST['nombre'];
+				$datos['paterno'] = $_POST['apaterno'];
+				$datos['materno'] = $_POST['amaterno'];
+				$datos['telfijo'] = $_POST['tel_fijo'];
+				$datos['eMail'] = $_POST['email'];
+				$datos['calle'] = $_POST['calle'];
+				$datos['no_Interior'] = $_POST['num_int'];
+				$datos['celular'] = $_POST['tel_cel'];
+				$datos['no_Exterior'] = $_POST['num_ext'];
+				$datos['cp'] = $_POST['cp'];
+				$datos['colonia'] = $_POST['colonia'];
+				$datos['mun'] = $_POST['municipio'];
+				$datos['estado'] = $_POST['estado'];
+				
+				$responseGenera = obtienResultados( 'GeneraCliente', $datos);
+				$response = simplexml_load_string($responseGenera->response);
+				$resultado->no_cliente = $response->SPI_DAT_GeneraClienteCot_Result->ID_CLIENTE;
+
+				if( $response ){
+					//sprintf(http://smartcen.net:8020/CotizadorControlador.asmx/GeneraData?id_Cliente=?'%s'&tipoTramiteN1='%s'&plan='%s'&itemIMEI='%s'&ubicacion=CENTMK,)
+					$data['id_Cliente'] = $resultado->no_cliente;
+					$data['tipoTramiteN1'] = $_POST['tramite'];
+					$data['plan'] = $_POST['plan'];
+					$data['itemIMEI'] = $_POST['item'];
+					$data['ubicacion'] = 'CENTMK';
+					$responseTramite = obtienResultados( 'GeneraData', $data);
+					if( $responseTramite->exito ){
+						$response_tramite = simplexml_load_string($responseTramite->response);
+						$resultado->tramite = $response_tramite;
+					}else{
+						$resultado->error = $responseTramite->error;
+					}
+					
+
+				}else{
+
+				}
+
+
+			}else{
+				$resultado->exito = false;
+				$resultado->error = $pdo->errorInfo();
+			}
+
+			break;
 
 		case 'ObtieneResultadosBusqueda':
 
@@ -28,14 +102,18 @@ if( !empty( $_POST) ){
                                     <div class="header"></div>
                                     <div class="clear"></div>';
 			}
+
+			$i = 0;
 			foreach ($resultadosBusqueda->SPS_SCL_DiferenciasEquipo_Result as $plan) {
+				$checked = ($i == 0) ? 'checked="checked"' : '';
 				$resultado->html .= ' 	<div class="row-cell">
 	                                        <div class="cell">'.$plan->Code.'</div>
 	                                        <div class="cell">'.$plan->PLAZO.'</div>
 	                                        <div class="cell">$'.$plan->DIFERENCIA_A_PAGAR.'</div>
 	                                        <div class="cell">$'.$plan->RENTA.'</div>
-	                                        <div class="cell"><input type="radio" name="tipo-plan" value="'.$plan->Code.'"></div>
+	                                        <div class="cell"><input type="radio" class="plan" name="tipo-plan" value="'.$plan->Code.'" ' . $checked . ' ></div>
 	                                    </div>';
+	            $i++;
 			}
 
 			break;
@@ -76,44 +154,54 @@ if( !empty( $_POST) ){
 			$responseDetalle = $detalle_equipo->getResponse();
 			$err = $detalle_equipo->getError();
 			$detalle_equipo->closeCurl();
-			$detalle = simplexml_load_string($responseDetalle);
-
-			$internal_memory = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->Internal_Memory;
-			$multiple_sim = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->Multiple_Sim;
-			$operating_system = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->Operating_System;
-			$technology = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->Technology;
-			$camera = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->camera;
-			$description = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->description;
-
-			$resultado->detalle = $detalle;
 			$resultado->url = $url;
+			
+
+			if ($err) 
+			{
+				$resultado->exito = false;
+				$resultado->error = "cURL Error #:" . $err;
+			} 
+			else 
+			{
+				$detalle = simplexml_load_string($responseDetalle);
+				$internal_memory = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->Internal_Memory;
+				$multiple_sim = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->Multiple_Sim;
+				$operating_system = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->Operating_System;
+				$technology = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->Technology;
+				$camera = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->camera;
+				$description = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->description;
+
+				$resultado->detalle = $detalle;
+				$resultado->url = $url;
 
 
-			$url_capacidades = sprintf( "http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneMemoriadeModeloAK?Modelo=%s&tarifario=1", str_replace( " ", "%20", $_POST['nombre'] ) );
-			$capacidad_equipo = new Curl( $url_capacidades );
-				
-			$responseCapacidad = $capacidad_equipo->getResponse();
-			$err = $capacidad_equipo->getError();
-			$capacidad_equipo->closeCurl();
-			$capacidad = simplexml_load_string($responseCapacidad);
-			$inputs = '';
+				$url_capacidades = sprintf( "http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneMemoriadeModeloAK?Modelo=%s&tarifario=1", str_replace( " ", "%20", $_POST['nombre'] ) );
+				$capacidad_equipo = new Curl( $url_capacidades );
+					
+				$responseCapacidad = $capacidad_equipo->getResponse();
+				$err = $capacidad_equipo->getError();
+				$capacidad_equipo->closeCurl();
+				$capacidad = simplexml_load_string($responseCapacidad);
+				$inputs = '';
 
-			foreach ($capacidad->SPS_SCL_ObtieneMemoriaEquiposNuevoDataAK_Result as $capacidad) {
-				$inputs .= '<input type="radio" class="capacidad" name="capacidad[]" value="'.$capacidad->MemoriaInterna.'"> <label> '.$capacidad->MemoriaInterna.' GB </label>';
-			}
+				foreach ($capacidad->SPS_SCL_ObtieneMemoriaEquiposNuevoDataAK_Result as $capacidad) {
+					$inputs .= '<input type="radio" class="capacidad" name="capacidad[]" value="'.$capacidad->MemoriaInterna.'"> <label> '.$capacidad->MemoriaInterna.' GB </label>';
+				}
 
-			$resultado->html = '	<div class="phone-nombre">'.$_POST['nombre'].'</div>
-				                    <div class="phone-sos">
-				                        <span><b>Cámara Trasera: </b> '.$camera.' megapixeles</span>
-				                        <span><b>Tecnología: </b> '.$technology.'</span>
-				                        <span><b>Sistema Operativo: </b> '.$operating_system.'</span>
-				                    </div>
-				                    <div class="capacidad">
-				                        <p>Capacidad</p>
-				                        '.$inputs.'
-				                    </div>';
-	        $resultado->imagen = $_POST['imagen'];
-	        $resultado->exito = true;
+				$resultado->html = '	<div class="phone-nombre">'.$_POST['nombre'].'</div>
+					                    <div class="phone-sos">
+					                        <span><b>Cámara Trasera: </b> '.$camera.' megapixeles</span>
+					                        <span><b>Tecnología: </b> '.$technology.'</span>
+					                        <span><b>Sistema Operativo: </b> '.$operating_system.'</span>
+					                    </div>
+					                    <div class="capacidad">
+					                        <p>Capacidad</p>
+					                        '.$inputs.'
+					                    </div>';
+		        $resultado->imagen = $_POST['imagen'];
+		        $resultado->exito = true;
+		     }
 
 			break;
 		
@@ -318,6 +406,33 @@ if( !empty( $_POST) ){
 			$result->response = $response;
 		}
 		$curlPlanes->closeCurl();	
+		return $result;
+	}
+
+	function obtienResultados( $method, $data = [] )
+	{
+		foreach ($data as $key => &$value) {
+			$value = str_replace(" ", "%20", $value );	
+		}
+
+		$keys = array_keys( $data );
+		$valuesGets = implode('=%s&', $keys);
+		$valuesGets .= '=%s';
+		
+		$url = vsprintf( "http://smartcen.net:8020/CotizadorControlador.asmx/".$method."?" . $valuesGets, $data ); 
+
+		$curl = new Curl( $url );
+		$response = $curl->getResponse();
+		$err = $curl->getError();
+		$result = new stdClass();
+		if($err){
+			$result->exito = false;
+			$result->error =  $err;
+		}else{
+			$result->exito = true;
+			$result->response = $response;
+		}
+		$curl->closeCurl();	
 		return $result;
 	}
 

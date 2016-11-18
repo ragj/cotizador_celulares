@@ -145,7 +145,7 @@
                                 <div class="buttons col-md-12 col-sm-12">
                                     <a class="button back" href="javascript:void(0);" data-step="0">
 <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar </a>
-                                    <a class="button" href="javascript:void(0);" data-step="2">Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                    <a class="button disabled" href="javascript:void(0);" data-step="2">Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </li>
@@ -166,7 +166,7 @@
                                 <div class="buttons col-md-12 col-sm-12">
                                     <a class="button back" href="javascript:void(0);" data-step="1">
     <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar </a>
-                                    <a class="button" href="javascript:void(0);" data-step="3">Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                    <a class="button disabled" href="javascript:void(0);" data-step="3">Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </li>
@@ -186,7 +186,7 @@
                                             <a class="button back" href="javascript:void(0);" data-step="2">
                                                 <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar
                                             </a>
-                                            <a class="button interno" id="btn-get-plan" href="javascript:void(0);" data-step="4">Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                            <a class="button disabled interno" id="btn-get-plan" href="javascript:void(0);" data-step="4">Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
 
@@ -211,7 +211,7 @@
                                         <div class="buttons col-md-12 col-sm-12">
                                             <a class="button back interno" href="javascript:void(0);" data-step="2">
                                                 <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar </a>
-                                            <a class="button" href="javascript:void(0);" data-step="4" disabled>Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                            <a class="button disabled" href="javascript:void(0);" data-step="4">Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
 
@@ -248,6 +248,10 @@
                                 <form id="datos-clientes">
                                     <div class="col-md-4 col-sm-4">
                                         <input type="text" name="nombre" class="input-form" placeholder="Nombre(s) *" required>
+                                        <input type="hidden" name="accion" value="registrar">
+                                        <input type="hidden" name="plan" value="">
+                                        <input type="hidden" name="item" value="">
+                                        <input type="hidden" name="tramite" value="">
                                     </div>
                                     <div class="col-md-4 col-sm-4">
                                         <input type="text" name="apaterno" class="input-form" placeholder="Apellido Paterno *" required>
@@ -281,6 +285,13 @@
                                         <input type="text" name="colonia" class="input-form" placeholder="Colonia *" required>
                                     </div>
                                     <div class="col-md-4 col-sm-4">
+                                        <input type="text" name="municipio" class="input-form" placeholder="Municio *" required>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <input type="text" name="estado" class="input-form" placeholder="Estado *" required>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col-md-4 col-sm-4">
                                         <input type="checkbox" name="terms" value="1" required/>
                                         <label>
                                             Acepto <a href="http://www.cencel.com.mx/privacidad.html" target="_blank">Política de privacidad</a>
@@ -299,7 +310,7 @@
     					<li class="step step-7" id="step-7">
                             <div class="exito col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                                 <h2>Tu trámite se ha generado correctamente con el </h2>
-                                <h3>Folio: 39348349</h3>
+                                <h3>Folio: <span id="folio"></span></h3>
                                 <h4>Recuerda tener tu folio a la mano</h4>
                             </div>
                         </li>
