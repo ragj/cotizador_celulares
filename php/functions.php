@@ -7,6 +7,115 @@ $resultado = new stdClass();
 if( !empty( $_POST) ){
 
 	switch ( $_POST['accion'] ) {
+
+		case 'ObtieneResultadosBusqueda':
+
+			$url = sprintf( "http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneResultadosBusqueda?plan=%s&equipo=%s", str_replace(" ", "%20", $_POST['plan']), $_POST['item'] );
+			$busquedaUrl = new Curl( $url );
+				
+			$responseBusqueda = $busquedaUrl->getResponse();
+			$err = $busquedaUrl->getError();
+			$busquedaUrl->closeCurl();
+			$resultadosBusqueda = simplexml_load_string($responseBusqueda);
+			$resultado->resultados = $resultadosBusqueda;
+			
+			if( $resultadosBusqueda ){
+				$resultado->exito = true;
+				$resultado->html = '<div class="header">Código</div>
+                                    <div class="header">Plazo</div>
+                                    <div class="header">Diferencia</div>
+                                    <div class="header">Renta</div>
+                                    <div class="header"></div>
+                                    <div class="clear"></div>';
+			}
+			foreach ($resultadosBusqueda->SPS_SCL_DiferenciasEquipo_Result as $plan) {
+				$resultado->html .= ' 	<div class="row-cell">
+	                                        <div class="cell">'.$plan->Code.'</div>
+	                                        <div class="cell">'.$plan->PLAZO.'</div>
+	                                        <div class="cell">$'.$plan->DIFERENCIA_A_PAGAR.'</div>
+	                                        <div class="cell">$'.$plan->RENTA.'</div>
+	                                        <div class="cell"><input type="radio" name="tipo-plan" value="'.$plan->Code.'"></div>
+	                                    </div>';
+			}
+
+			break;
+
+		case 'ObtieneColordeModeloMemoriaAK':
+
+			//http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneColordeModeloMemoriaAK?Modelo=galaxy%20A5&memoria=32&tarifario=1
+			$url = sprintf( "http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneColordeModeloMemoriaAK?Modelo=%s&memoria=%s&tarifario=1", str_replace(" ", "%20", $_POST['modelo']), $_POST['memoria'] );
+			$variantes_equipo = new Curl( $url );
+				
+			$responseVariantes = $variantes_equipo->getResponse();
+			$err = $variantes_equipo->getError();
+			$variantes_equipo->closeCurl();
+			$variantes = simplexml_load_string($responseVariantes);
+			$resultado->variantes = $variantes;
+
+			if ( $variantes ){
+				$resultado->html = '<div class="color">
+				                        <p>Color</p>';
+				$resultado->exito = $variantes;
+				foreach ($variantes->SPS_SCL_ObtieneColoresEquiposNuevoDataAK_Result as $variante) {
+					$resultado->html .= '<input type="radio" class="variante" data-variante="'.  strtolower( str_replace( " ", "-", $variante->Color ) ) .'" name="variante" value="'.$variante->No_.'"> <label> '.$variante->Color.' </label> ';
+				}
+
+				$resultado->html .= '</div>';
+			}
+
+			
+
+			break;
+
+		case 'ObtieneCaracteristicasEquipo':
+
+
+			$url = sprintf( "http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneCaracteristicas?item=%s", $_POST['item'] );
+			$detalle_equipo = new Curl( $url );
+				
+			$responseDetalle = $detalle_equipo->getResponse();
+			$err = $detalle_equipo->getError();
+			$detalle_equipo->closeCurl();
+			$detalle = simplexml_load_string($responseDetalle);
+
+			$internal_memory = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->Internal_Memory;
+			$multiple_sim = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->Multiple_Sim;
+			$operating_system = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->Operating_System;
+			$technology = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->Technology;
+			$camera = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->camera;
+			$description = $detalle->SPS_SCL_ObtieneCaracteristicas_Result->description;
+
+			$resultado->detalle = $detalle;
+			$resultado->url = $url;
+
+
+			$url_capacidades = sprintf( "http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneMemoriadeModeloAK?Modelo=%s&tarifario=1", str_replace( " ", "%20", $_POST['nombre'] ) );
+			$capacidad_equipo = new Curl( $url_capacidades );
+				
+			$responseCapacidad = $capacidad_equipo->getResponse();
+			$err = $capacidad_equipo->getError();
+			$capacidad_equipo->closeCurl();
+			$capacidad = simplexml_load_string($responseCapacidad);
+			$inputs = '';
+
+			foreach ($capacidad->SPS_SCL_ObtieneMemoriaEquiposNuevoDataAK_Result as $capacidad) {
+				$inputs .= '<input type="radio" class="capacidad" name="capacidad[]" value="'.$capacidad->MemoriaInterna.'"> <label> '.$capacidad->MemoriaInterna.' GB </label>';
+			}
+
+			$resultado->html = '	<div class="phone-nombre">'.$_POST['nombre'].'</div>
+				                    <div class="phone-sos">
+				                        <span><b>Cámara Trasera: </b> '.$camera.' megapixeles</span>
+				                        <span><b>Tecnología: </b> '.$technology.'</span>
+				                        <span><b>Sistema Operativo: </b> '.$operating_system.'</span>
+				                    </div>
+				                    <div class="capacidad">
+				                        <p>Capacidad</p>
+				                        '.$inputs.'
+				                    </div>';
+	        $resultado->imagen = $_POST['imagen'];
+	        $resultado->exito = true;
+
+			break;
 		
 		case 'ObtieneEquiposRapido':
 
@@ -84,15 +193,17 @@ if( !empty( $_POST) ){
 								$err = $imagen_modelo->getError();
 								$imagen_modelo->closeCurl();
 								$xml_imagen = simplexml_load_string($responseImagenModelo);
-								$modelo->imagen = $xml_imagen;
-								$modelo->url_imagen = $url_modelo_detalle;
+								$imagen = $xml_imagen->SPS_SCL_ObtieneImagenes_Result->Imagen;
+								$modelo->detalle = $imagen;
+
+								$modelo->html = '<li style="display:'.$display.'" class="col-md-4 col-sm-6 '.strtolower( $xmls->BRAND ).'">
+	                                            <span class="prev-phone"><img src="https://smartcen.net:8005/Content/Images/Equipos/'.$imagen.'"></span>
+	                                            <span class="nombre-phone">'.$xmls_modelo->Modelo.'</span>
+	                                            <input type="radio" name="telefono" value="'.$item.'" '.$checked.'/>
+	                                        </li>';
 							}					
 						
-							$modelo->html = '<li style="display:'.$display.'" class="col-md-4 col-sm-6 '.strtolower( $xmls->BRAND ).'">
-	                                            <span class="prev-phone"><img src="img/tel_img_no_disponible.png"></span>
-	                                            <span class="nombre-phone">'.$xmls_modelo->Modelo.'</span>
-	                                            <input type="radio" name="telefono" value="'.$xmls_modelo->Modelo.'" '.$checked.'/>
-	                                        </li>';
+							
 							$jj++;
 							array_push($modelos, $modelo);
 				        }
