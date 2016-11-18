@@ -189,5 +189,26 @@ if( !empty( $_POST) ){
 		$resultado->exito = false;
 	}
 
+	function obtienResultadosBusqueda( $plan, $equipo )
+	{
+		$plan = str_replace(" ", "%20", $plan );
+		$equipo = str_replace(" ", "%20", $equipo );
+		$url = sprintf( "http://smartcen.net:8020/CotizadorControlador.asmx/ObtieneResultadosBusqueda?plan=%s&equipo=%s", $plan, $equipo ); 
+
+		$curl = new Curl( $url );
+		$response = $curl->getResponse();
+		$err = $curlPlanes->getError();
+		$result = new stdClass();
+		if($err){
+			$result->exito = false;
+			$result->error =  $err;
+		}else{
+			$result->exito = true;
+			$result->response = $response;
+		}
+		$curlPlanes->closeCurl();	
+		return $result;
+	}
+
 	header('Content-type: text/json');
 	echo json_encode($resultado); 
