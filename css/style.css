@@ -177,6 +177,7 @@ body {
 
 .titulo p {
 	text-align: center;
+	display: none;
 }
 
 .barra {
@@ -574,9 +575,9 @@ div.detalle-planes div.row-cell div.cell.radio {
 }
 
 div.detalle-planes div.row-cell div.cell.radio input {
-	width: 32px; 
-	height: 32px; 
-	margin: 4px auto; 
+	width: 24px; 
+	height: 24px; 
+	margin: 8px auto; 
 	display: inline-block;
 }
 
@@ -697,7 +698,8 @@ div.detalle-planes div.row-cell div.cell.radio input {
 .contenedor > div div.phones ul li .nombre-phone {
 	width: 45%; 
 	margin-top: 35px; 
-	font-size: 18px;
+	font-size: 16px;
+	min-height: 45px;
 	float: left;
 	margin-left: 5%;
 	text-align: left;
@@ -705,8 +707,8 @@ div.detalle-planes div.row-cell div.cell.radio input {
 
 .contenedor > div div.phones ul li input {
 	display: inline-block;
-	width: 32px; 
-	height: 32px; 
+	width: 24px; 
+	height: 24px; 
 	margin: 5px auto;
 }
 
@@ -947,6 +949,11 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	line-height: 32px; 
 }
 
+.phone-resumen .plan-details .row-cell .cell input[type="radio"] {
+	width: 16px; 
+	height: 16px;
+}
+
 .contenedor > div > ul li .buttons {
 	margin-top: 0px;
 }
@@ -1016,6 +1023,49 @@ div.detalle-planes div.row-cell div.cell.radio input {
     padding: 3px 5px;
     line-height: 32px;
     float: left;
+}
+
+.contenedor > div > ul li div.formulario input[type="checkbox"] {
+	width: 16px; 
+	height: 16px;
+	margin-top: 12px;
+}
+
+.contenedor > div > ul li div.formulario label {
+	float: left;
+	display: block;
+	font-size: 12px;
+	line-height: 40px;
+}
+
+.contenedor > div > ul li div.formulario label a {
+	color: #114b95;
+	display: inline-block;
+}
+
+.contenedor > div > ul li div.formulario span.error {
+	float: left;
+	color: #d55;
+	font-size: 10px;
+	display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    padding-left: 10px;
+}
+
+.contenedor > div > ul li div.formulario span#terms-error.error {
+	width: 10px;
+    float: none;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.contenedor > div > ul li div.formulario span.error.valid {
+	display: none !important;
+}
+
+.contenedor > div > ul li div.formulario input.error {
+	margin-bottom: 5px;
 }
 
 .contenedor > div > ul li div.formulario input.small {
