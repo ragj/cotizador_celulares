@@ -177,6 +177,7 @@ body {
 
 .titulo p {
 	text-align: center;
+	display: none;
 }
 
 .barra {
