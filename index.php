@@ -174,38 +174,19 @@
                             <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                                 <div class="col-md-5 col-sm-5">
                                     <div class="phone-image col-md-12">
-                                        <img src="img/tel_img_no_disponible.png"/>
+                                        <img src=""/>
                                     </div>
                                 </div>
                                 <div class="col-md-7 col-sm-7">
                                     <!-- Detalles del teléfono -->
                                     <div class="phone-details col-md-12">
-                                        <div class="phone-nombre">Samsung Galaxy S7</div>
-
-                                        <div class="phone-sos">
-                                            <span><b>Memoria externa: </b> Expandible hasta 64GB</span>
-                                            <span><b>Cámara Trasera: </b> 16 megapixeles</span>
-                                            <span><b>Tecnología: </b> LTE</span>
-                                            <span><b>Sistema Operativo: </b> Android</span>
-                                        </div>
-                                        <div class="color">
-                                            <p>Color</p>
-                                            <span class="black"></span>
-                                            <span class="white"></span>
-                                            <span class="gold"></span>
-                                            <span class="silver"></span>
-                                            <span class="pink"></span>
-                                        </div>
-                                        <div class="capacidad">
-                                            <p>Capacidad</p>
-                                            <span><span>32</span> Gb</span>
-                                            <span class="active"><span>64</span> Gb</span>
-                                        </div>
+                                        
 
                                         <div class="buttons col-md-12">
                                             <a class="button back" href="javascript:void(0);" data-step="2">
-            <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar </a>
-                                            <a class="button interno" href="javascript:void(0);" data-step="4">Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                                <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar
+                                            </a>
+                                            <a class="button interno" id="btn-get-plan" href="javascript:void(0);" data-step="4">Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
 
@@ -215,48 +196,22 @@
                                         <div class="phone-resumen">
                                             <div class="color">
                                                 <span>Color </span> 
-                                                <span class="color silver"></span>
+                                                <span class="color"></span>
                                             </div>
                                             <div class="capacidad">
                                                 <span>Capacidad </span> 
-                                                <span class="datos"><span>64</span> Gb</span>
+                                                <span class="datos"><span class="gb"></span> Gb</span>
                                             </div>
                                             <div class="plan"></div>
                                             <div class="clear"></div>
                                             <div class="plan-details">
-                                                <div class="header">Código</div>
-                                                <div class="header">Plazo</div>
-                                                <div class="header">Diferencia</div>
-                                                <div class="header">Renta</div>
-                                                <div class="header"></div>
-                                                <div class="clear"></div>
-                                                <div class="row-cell">
-                                                    <div class="cell">S4984</div>
-                                                    <div class="cell">12 Meses</div>
-                                                    <div class="cell">$4093</div>
-                                                    <div class="cell">$599</div>
-                                                    <div class="cell"><input type="radio" name="tipo-plan" value="1"></div>
-                                                </div>
-                                                <div class="row-cell">
-                                                    <div class="cell">S4984</div>
-                                                    <div class="cell">12 Meses</div>
-                                                    <div class="cell">$4093</div>
-                                                    <div class="cell">$599</div>
-                                                    <div class="cell"><input type="radio" name="tipo-plan" value="2"></div>
-                                                </div>
-                                                <div class="row-cell">
-                                                    <div class="cell">S4984</div>
-                                                    <div class="cell">12 Meses</div>
-                                                    <div class="cell">$4093</div>
-                                                    <div class="cell">$599</div>
-                                                    <div class="cell"><input type="radio" name="tipo-plan" value="3"></div>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                         <div class="buttons col-md-12 col-sm-12">
                                             <a class="button back interno" href="javascript:void(0);" data-step="2">
-            <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar </a>
-                                            <a class="button" href="javascript:void(0);" data-step="4">Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                                <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar </a>
+                                            <a class="button" href="javascript:void(0);" data-step="4" disabled>Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
 
@@ -267,20 +222,20 @@
                             <div class="planes col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                                 <div class="col-md-6 col-sm-6">
                                     <span>Disfruta tu nuevo plan <br> a la medida</span>
-                                    <a class="button nueva" href="javascript:void(0);" data-step="5">Nueva línea</a>
+                                    <a class="button nueva" data-accion="nueva" href="javascript:void(0);" data-step="5">Nueva línea</a>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <span>Tu plan ha expirado</span>
-                                    <a class="button renovacion" href="javascript:void(0);" data-step="5">Renovación</a>
+                                    <a class="button renovacion" data-accion="renovacion" href="javascript:void(0);" data-step="5">Renovación</a>
                                 </div>
                                 <div class="clear"></div>
                                 <div class="col-md-6 col-sm-6">
                                     <span>Existen nuevas posibilidades <br> a tus necesidades</span>
-                                    <a class="button cambio" href="javascript:void(0);" data-step="5">Cambio de plan</a>
+                                    <a class="button cambio" data-accion="cambio" href="javascript:void(0);" data-step="5">Cambio de plan</a>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <span>Cambia de compañia <br> sin perder tu número</span>
-                                    <a class="button porta" href="javascript:void(0);" data-step="5">Portabilidad</a>
+                                    <a class="button porta" data-accion="portabilidad" href="javascript:void(0);" data-step="5">Portabilidad</a>
                                 </div>
                                 <div class="buttons col-md-12 col-sm-12">
                                     <a class="button back" href="javascript:void(0);" data-step="3">

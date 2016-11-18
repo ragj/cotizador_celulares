@@ -766,6 +766,26 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	overflow: hidden;
 }
 
+.phone-details .color input {
+	float: left;
+	margin: 4px 5px 4px 2px;
+}
+
+.phone-details .color label {
+	float: left;
+	margin: 0px 5px 0px 2px; 
+	line-height: 20px;
+	font-size: 12px;
+}
+
+.phone-details .color label:after {
+	content: '|';
+}
+
+.phone-details .color label:last-child:after {
+	content: '';
+}
+
 .phone-details .color span, .phone-resumen .color span.color {
 	width: 24px; 
 	height: 24px; 
@@ -800,6 +820,17 @@ div.detalle-planes div.row-cell div.cell.radio input {
 .phone-details .capacidad {
 	margin: 4px auto;
 	overflow: hidden;
+}
+
+.phone-details .capacidad input {
+	float: left;
+	margin: 4px 5px;
+}
+
+.phone-details .capacidad label {
+	float: left;
+	margin: 0px 10px 0px 5px;
+	line-height: 20px;
 }
 
 .phone-details .capacidad > span, .phone-resumen .capacidad .datos {

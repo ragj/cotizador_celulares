@@ -113,7 +113,7 @@ $(document).ready(function(){
 		else if(newVal==800 || newVal <1500){
 			rango=3;
 		}
-		else if(newVal >1500){
+		else if( newVal > 1500 || newVal == 1500){
 			rango=4;
 		}
 
@@ -196,7 +196,27 @@ $(document).ready(function(){
 
 			mainSlider.slider('setValue', (step + 1), true);
 			mainSlider.trigger('change', [event]);
-		}
+		} else if( step == 3 ){
+			
+
+			var item = $('#step-3 .phones input:checked').val();
+			var nombre = $('#step-3 .phones input:checked').parent().find('span.nombre-phone').text();
+			var imagen = $('#step-3 .phones input:checked').parent().find('img').attr('src');
+
+			$.post('/php/functions.php', { "accion" : "ObtieneCaracteristicasEquipo", "item" : item, "nombre" : nombre, "imagen" : imagen }, function(data) {
+
+				$('#step-4 div.phone-details').find('.phone-nombre, .phone-sos, .capacidad, .color').remove();
+				if( data.exito ){
+					
+					$('#step-4 div.phone-details').prepend( data.html );
+					$('#step-4 div.phone-image img').attr('src', data.imagen );
+					
+				}
+			});
+
+			mainSlider.slider('setValue', (step + 1), true);
+			mainSlider.trigger('change', [event]);
+		}	
 		else {
 			mainSlider.slider('setValue', (step + 1), true);
 			mainSlider.trigger('change', [event]);
@@ -247,4 +267,44 @@ $(document).ready(function(){
 		$('#step-3 .marcas li').removeClass('active').filter( marca ).addClass('active');
 	});
 
+<<<<<<< HEAD
+=======
+	$('#step-4 .phone-details').on('change', 'input.capacidad', function(event) {
+		event.preventDefault();
+		var memoria = $(this).val();
+		var modelo = $('.phone-details .phone-nombre').text();
+		
+		$('.phone-plan .datos span.gb').text(memoria);
+		$('.phone-plan .phone-nombre').text(modelo);
+		$('.phone-details div.color').remove();
+		$.post('/php/functions.php', { "accion" : "ObtieneColordeModeloMemoriaAK", "modelo" : modelo, "memoria" : memoria }, function(data) {
+			$(data.html).insertBefore('#step-4 .phone-details .buttons.col-md-12');
+		});
+	});
+
+	$('#step-4 .phone-details').on('change', 'input.variante', function(event) {
+		var color = $(this).data('variante');
+		$('.phone-plan span.color').removeClass().addClass( 'color '+ color );
+	});
+
+	$('#step-4').on('click', '#btn-get-plan', function(event) {
+		event.preventDefault();
+		var plan = $('#step-2 .detalle-planes input:checked').val()
+		var item = $('#step-4 .phone-details .color input:checked').val()
+		$.post('/php/functions.php', { "accion" : "ObtieneResultadosBusqueda", "plan" : plan, "item" : item }, function(data) {
+			$('#step-4 .phone-plan .plan-details').html( "" );
+			if( data.exito ){
+				$('#step-4 .phone-plan .plan-details').html( data.html );
+			}
+		});
+	});
+
+	$('#step-5').on('click', 'a.button', function(event) {
+		var boton = $(this);
+		boton.closest('.planes').find('a.button').removeClass('active').filter( $(this) ).addClass('active');
+		var accion = boton.data('accion');
+		console.log( accion );
+	});
+
+>>>>>>> 41de7eb4eca5e33944c1fd3d6a906ec74ef0b693
 });
