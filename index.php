@@ -292,41 +292,47 @@
                             <div class="formulario col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                                 <form id="datos-clientes">
                                     <div class="col-md-4 col-sm-4">
-                                        <input type="text" name="nombre" class="input-form" placeholder="Nombre(s)">
+                                        <input type="text" name="nombre" class="input-form" placeholder="Nombre(s) *" required>
                                     </div>
                                     <div class="col-md-4 col-sm-4">
-                                        <input type="text" name="apaterno" class="input-form" placeholder="Apellido Paterno">
+                                        <input type="text" name="apaterno" class="input-form" placeholder="Apellido Paterno *" required>
                                     </div>
                                     <div class="col-md-4 col-sm-4">
-                                        <input type="text" name="amaterno" class="input-form" placeholder="Apellido Materno">
-                                    </div>
-                                    <div class="clear"></div>
-                                    <div class="col-md-4 col-sm-4">
-                                        <input type="text" name="tel_cel" class="input-form" placeholder="Tel Celular">
-                                    </div>
-                                    <div class="col-md-4 col-sm-4">
-                                        <input type="text" name="tel_fijo" class="input-form" placeholder="Tel Fijo">
-                                    </div>
-                                    <div class="col-md-4 col-sm-4">
-                                        <input type="email" name="email" class="input-form" placeholder="Correo electrónico">
+                                        <input type="text" name="amaterno" class="input-form" placeholder="Apellido Materno *" required>
                                     </div>
                                     <div class="clear"></div>
                                     <div class="col-md-4 col-sm-4">
-                                        <input type="text" name="calle" class="input-form" placeholder="Calle">
+                                        <input type="text" name="tel_cel" class="input-form" placeholder="Tel Celular *" required>
                                     </div>
                                     <div class="col-md-4 col-sm-4">
-                                        <input type="text" name="num_ext" class="input-form small" placeholder="No. Ext.">
+                                        <input type="text" name="tel_fijo" class="input-form" placeholder="Tel Fijo *" required>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <input type="email" name="email" class="input-form" placeholder="Correo electrónico *" required>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <input type="text" name="calle" class="input-form" placeholder="Calle *" required>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <input type="text" name="num_ext" class="input-form small" placeholder="No. Ext. *" required>
                                         <input type="text" name="num_int" class="input-form small" placeholder="No. Int.">
                                     </div>
                                     <div class="col-md-4 col-sm-4">
-                                        <input type="text" name="cp" class="input-form" placeholder="Código Postal">
+                                        <input type="text" name="cp" class="input-form" placeholder="Código Postal *" required>
                                     </div>
                                     <div class="clear"></div>
                                     <div class="col-md-4 col-sm-4">
-                                        <input type="text" name="colonia" class="input-form" placeholder="Colonia">
+                                        <input type="text" name="colonia" class="input-form" placeholder="Colonia *" required>
                                     </div>
                                     <div class="col-md-4 col-sm-4">
-                                        <a class="button" href="javascript:void(0);" data-step="6">Enviar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                        <input type="checkbox" name="terms" value="1" required/>
+                                        <label>
+                                            Acepto <a href="http://www.cencel.com.mx/privacidad.html" target="_blank">Política de privacidad</a>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <a class="button interno" href="javascript:void(0);">Enviar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                     </div>
                                 </form>
                                 <div class="buttons col-md-12 col-sm-12">
@@ -383,6 +389,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.2/bootstrap-slider.min.js"></script>
     <script src="js/lightgallery.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
     <script src="js/custom.js"></script>
   </body>
 </html>
