@@ -340,7 +340,7 @@
     				</div>
     				<div class="col-md-6 col-sm-12">
     					<form id="newsletter">
-    						<input type="text" name="email"/>
+    						<input type="text" name="email" required />
     						<input type="submit" name="enviar" value="Enviar">
     					</form>
     				</div>
@@ -357,5 +357,38 @@
     <script src="js/lightgallery.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/custom.js"></script>
+
+    <script type="text/javascript">
+        $('#newsletter').validate({
+            rules: {
+                email: {
+                    email: true
+                },
+            },
+            messages: {
+                email: {
+                    required: 'Dato requerido', 
+                    email: 'Correo electrónico inválido'
+                }
+            },
+            errorElement: 'span',
+            success: 'valid',
+            submitHandler: function(form){
+                var $form = $(form), values = $form.serialize();
+
+                $.post('/php/newsletter.php', values, function(data) {
+                    console.log( data );
+                    if( data.exito ){
+                        $form.empty().append('<span class="exito">Tus fueron recibidos correctamente.</span>');
+                    }
+                    else{
+
+                    }
+                });
+                
+            }
+        });    
+    </script>
+
   </body>
 </html>

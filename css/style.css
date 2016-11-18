@@ -1213,7 +1213,16 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	overflow: hidden;
 	float: right;
 	margin: 0px;
+	position: relative;
+	padding-bottom: 20px; 
 }
+
+.newsletter form span.error {
+	position: absolute;
+	left: 0px; 
+	bottom: 0px;
+	border-bottom: 1px solid #d22;
+} 
 
 .newsletter form input {
 	height: 40px; 
@@ -1225,6 +1234,7 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	background-color: #fff;
 	padding: 0px 5px;
 	margin: 12px auto;
+	color: #333;
 }
 
 .newsletter form input[type="submit"]{
@@ -1233,6 +1243,7 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	font-size: 19px;
 	text-align: center;
 	font-weight: lighter;
+	color: #fff;
 }
 
 .clear {
@@ -1278,4 +1289,5 @@ div.detalle-planes div.row-cell div.cell.radio input {
 
  a[disabled="disabled"], a.disabled {
     pointer-events: none;
+    opacity: 0.7;
 }
