@@ -267,8 +267,6 @@ $(document).ready(function(){
 		$('#step-3 .marcas li').removeClass('active').filter( marca ).addClass('active');
 	});
 
-<<<<<<< HEAD
-=======
 	$('#step-4 .phone-details').on('change', 'input.capacidad', function(event) {
 		event.preventDefault();
 		var memoria = $(this).val();
@@ -306,5 +304,79 @@ $(document).ready(function(){
 		console.log( accion );
 	});
 
->>>>>>> 41de7eb4eca5e33944c1fd3d6a906ec74ef0b693
+	// Enviar formulario de datos
+	$('#datos-clientes').on('click', 'a.button', function(e){
+		e.preventDefault();
+
+		$('#datos-clientes').submit();	
+	});
+
+	// Validar formulario
+	$('#datos-clientes').validate({
+		rules: {
+			email: {
+				email: true
+			},
+			tel_cel: {
+				digits: true,
+				rangelength: [8, 10]
+			},
+			tel_fijo: {
+				digits: true,
+				rangelength: [8, 10]
+			},
+			cp: {
+				digits: true
+			}
+		},
+		messages: {
+			nombre: {
+				required: 'Dato requerido'
+			},
+			apaterno: {
+				required: 'Dato requerido'
+			},
+			amaterno: {
+				required: 'Dato requerido'
+			},
+			email: {
+				required: 'Dato requerido', 
+				email: 'Correo electrónico inválido'
+			},
+			tel_cel: {
+				required: 'Dato requerido',
+				digits: 'Número inválido',
+				rangelength: 'Número inválido'
+			},
+			tel_fijo: {
+				required: 'Dato requerido',
+				digits: 'Número inválido',
+				rangelength: 'Número inválido'
+			},
+			calle: {
+				required: 'Dato requerido',
+			},
+			num_ext: {
+				required: 'Dato requerido',	
+			},
+			cp: {
+				required: 'Dato requerido',
+				digits: 'Número inválido'
+			},
+			colonia: {
+				required: 'Dato requerido'
+			},
+			terms: {
+				required: '*'
+			},
+		},
+		errorElement: 'span',
+		success: 'valid',
+		submitHandler: function(form){
+			var $form = $(form), values = $form.serialize();
+
+			mainSlider.slider('setValue', 7, true);
+			mainSlider.trigger('change', [event]);
+		}
+	});
 });
