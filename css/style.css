@@ -1246,6 +1246,12 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	color: #fff;
 }
 
+.newsletter form span.exito {
+	display: block;
+	margin: 25px auto;
+	font-size: 14px;
+}
+
 .clear {
 	clear: both;
 }
