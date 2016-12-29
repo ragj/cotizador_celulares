@@ -121,7 +121,7 @@ body {
 
 /** Intro **/
 .intro {
-	margin: 80px auto 150px;
+	margin: 40px auto 60px;
 	text-align: center;
 }
 
@@ -154,6 +154,34 @@ body {
 	background-color: #41aaf3;
 	display: inline-block;
 	text-decoration: none;
+}
+
+.intro #celular {
+	margin-top: 40px; 
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.intro #celular label {
+	font-size: 18px;
+	line-height: 32px;
+	display: block;
+	margin: 8px auto;
+	color: #cb2879;
+}
+
+.intro #celular input {
+	border-radius: 10px;
+	background-color: #eee;
+    border: 1px solid #aaa;
+    width: 220px;
+    margin: 3px 12px 18px;
+    padding: 3px 5px;
+    line-height: 32px;
+}
+
+.intro #celular span.error {
+	color: #d55;
 }
 
 .row.titulo, .row.barra, .row.numpaso, .row.contenedor {
@@ -219,16 +247,24 @@ body {
     border: 2px solid #ccc;
 }
 
+.barra .slider.slider-horizontal .slider-tick a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	float: left;
+	font-size: 14px; 
+	line-height: 24px;
+	color: #fff; 
+	text-decoration: none;
+	text-align: center;
+}
+
 .barra .slider.slider-horizontal .slider-handle:before {
 	color: #fff;
 	line-height: 28px; 
 	font-size: 14px; 
 	text-align: center;
 	display: block;
-	content: '1';
-}
-
-.barra .slider.slider-horizontal .slider-handle.pos-1:before {
 	content: '1';
 }
 
@@ -276,6 +312,11 @@ body {
 	display: none;
 }
 
+.barra .slider.slider-disabled .slider-track {
+	cursor: pointer;
+}
+
+/** Título de número de paso **/
 .numpaso {
 	margin: 20px auto 10px;
 }
@@ -342,7 +383,7 @@ body {
     min-height: 0px;
 }
 
-.contenedor > div ul {
+.contenedor > div > ul {
 	width: 500em; 
 	height: 100%;
 	overflow: hidden;
@@ -503,6 +544,7 @@ div.planes > div.header.internet {
 div.planes > div.header.redes {
 	background: transparent url(../img/redes_sociales.png) center top no-repeat;
 	background-size: 60%;
+	background-position: center top;
 } 
 
 div.planes > div.header.radio {
@@ -512,7 +554,7 @@ div.planes > div.header.radio {
 div.detalle-planes {
 	width: 100%;
 	display: block;
-	max-height: 225px;
+	max-height: initial;
     overflow: hidden;
     overflow-y: scroll;
 }
@@ -521,6 +563,14 @@ div.detalle-planes.loading {
 	background: transparent url(../img/loader.gif) center bottom no-repeat;
 	background-size: 6%;
 	min-height: 130px;
+}
+
+div.detalle-planes.loading:before {
+	content: 'Buscando planes para tu presupuesto';
+	widows: 100%; 
+	display: block;
+	text-align: center;
+	font-size: 14px;
 }
 
 div.detalle-planes > div {
@@ -541,10 +591,10 @@ div.detalle-planes > div.row-cell:nth-child(even){
 }
 
 div.detalle-planes > div.row-cell div.cell {
-	height: 45px;
+	height: 30px;
 	width: 16.5%;
-	font-size: 12px;
-	line-height: 45px;
+	font-size: 11px;
+	line-height: 30px;
 	text-transform: uppercase;
 	text-align: center;
 	color: #114b95;
@@ -554,16 +604,15 @@ div.detalle-planes > div.row-cell div.cell {
 
 div.detalle-planes div.row-cell div.cell.titulo-plan {
 	font-family: 'gotham-bold';
-	/*font-size: 16px;*/
-	font-size: 13px;
 	width: 26%;
 }
 
 div.detalle-planes div.row-cell div.cell .check {
-	width: 24px; 
-	height: 24px; 
+	width: 16px; 
+	height: 16px; 
+	min-height: 16px;
 	display: inline-block;
-	margin: 10px auto;
+	margin: 7px auto;
 	background: transparent url(../img/check.png) center no-repeat; 
 	background-size: contain;
 }
@@ -575,9 +624,9 @@ div.detalle-planes div.row-cell div.cell.radio {
 }
 
 div.detalle-planes div.row-cell div.cell.radio input {
-	width: 24px; 
-	height: 24px; 
-	margin: 8px auto; 
+	width: 20px; 
+	height: 20px; 
+	margin: 5px auto; 
 	display: inline-block;
 }
 
@@ -598,8 +647,8 @@ div.detalle-planes div.row-cell div.cell.radio input {
 
 .contenedor > div .marcas ul li {
 	float: left;
-	width: 9.3%;
-	margin: 0px 1.5%;
+	width: 9%;
+	margin: 0px 0.5%;
 	height: 100%;
 }
 
@@ -651,6 +700,18 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	background-image: url(../img/marcas/zte.png);
 }
 
+.marcas ul li.alcatel a {
+	background-image: url(../img/marcas/alcatel.png);
+}
+
+.marcas ul li.polaroid a {
+	background-image: url(../img/marcas/polaroid.png);
+}
+
+.marcas ul li.nyx_mobile a {
+	background-image: url(../img/marcas/nyx_mobile.png);
+}
+
 .marcas ul li.apple { 
 	display: none;
 }
@@ -662,7 +723,32 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	margin-top: 15px; 
 	height: 360px;
     max-height: 360px;
-    overflow-y: scroll;
+    position: relative;
+}
+
+.contenedor > div div.phones > a {
+	position: absolute;
+	top: 45%;
+	font-size: 32px;
+	color: #114b95;
+	width: 36px;
+	height: 36px; 
+	line-height: 36px; 
+	z-index: 10;
+	display: none;
+}
+
+.contenedor > div div.phones > a.prev-phone {
+	left: -50px;
+}
+
+.contenedor > div div.phones > a.next-phone {
+	right: -50px;
+}
+
+.contenedor > div div.phones.sizer {
+	height: 0px;
+	visibility: hidden;
 }
 
 .contenedor > div div.phones.loading {
@@ -671,23 +757,39 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	min-height: 130px;
 }
 
-.contenedor > div div.phones ul {
-	width: 100%;
+.contenedor > div div.phones.loading:before {
+	content: 'Cargando los mejores equipos para ti'; 
+	display: block;
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+    margin: 0px;
+    padding-top: 54px;
+    color: #114b95;
+}
+
+.contenedor > div div.phones .inner-phones {
 	overflow: hidden;
-	overflow-y: scroll;
+	width: 100%; 
+	height: 100%;
+}
+
+.contenedor > div div.phones ul {
+	width: 800em;
+	overflow: hidden;
 	padding: 0px; 
 	list-style-type: none;
 }
 
 .contenedor > div div.phones ul li {
-	height: 180px; 
+	height: 190px; 
 	float: left;
 	margin: 0px;
 	text-align: center;
 }
 
 .contenedor > div div.phones ul li .prev-phone {
-	width: 50%; 
+	width: 60%; 
 	float: left;
 }
 
@@ -696,9 +798,9 @@ div.detalle-planes div.row-cell div.cell.radio input {
 }
 
 .contenedor > div div.phones ul li .nombre-phone {
-	width: 45%; 
+	width: 35%; 
 	margin-top: 35px; 
-	font-size: 16px;
+	font-size: 14px;
 	min-height: 45px;
 	float: left;
 	margin-left: 5%;
@@ -718,8 +820,9 @@ div.detalle-planes div.row-cell div.cell.radio input {
 }
 
 .phone-image img {
-	max-width: 100%;
+	max-width: 90%;
 	display: inline-block;
+	float: left;
 }
 
 .phone-details, .phone-plan {
@@ -769,6 +872,8 @@ div.detalle-planes div.row-cell div.cell.radio input {
 .phone-details .color input {
 	float: left;
 	margin: 4px 5px 4px 2px;
+	visibility: hidden;
+	display: none;
 }
 
 .phone-details .color label {
@@ -778,43 +883,139 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	font-size: 12px;
 }
 
-.phone-details .color label:after {
-	content: '|';
+.phone-details .color label:hover {
+	cursor: pointer;
 }
 
-.phone-details .color label:last-child:after {
-	content: '';
+.phone-details .color > div {
+	float: left;
+	overflow: hidden;
+	text-align: center;
+	margin-bottom: 10px;
+	width: 80px;
 }
 
-.phone-details .color span, .phone-resumen .color span.color {
-	width: 24px; 
-	height: 24px; 
-	border-radius: 50%;
-	margin: 4px;
-	border: 1px solid #114b95;
-	background-origin: padding-box;
-	display: block;
+.phone-details .color span {
+	font-size: 11px; 
+	width: 100%; 
+	text-align: center;
+	text-transform: capitalize;
 	float: left;
 }
 
-.phone-details .color span.white, .phone-resumen span.color.white {
-	background-color: #fff;
+.phone-details .color label, .phone-resumen .color span.color {
+	width: 36px; 
+	height: 36px; 
+	border-radius: 50%;
+	margin: 4px;
+	margin-top: 0px;
+	border: 1px solid #fff;
+	background-origin: padding-box;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: inline-block;
+	float: none;
+	overflow: visible;
+	position: relative;
+	color: transparent;
 }
 
-.phone-details .color span.black, .phone-resumen span.color.black {
-	background-color: #000;
+.phone-details .color label.active {
+	border: 2px solid #114b95;
 }
 
-.phone-details .color span.silver, .phone-resumen span.color.silver {
-	background-color: gray;
+.phone-details .color label.amarillo, .phone-resumen span.color.amarillo {
+	background-image: url(../img/colores/amarillo.png);
 }
 
-.phone-details .color span.pink, .phone-resumen span.color.pink {
-	background-color: pink;
+.phone-details .color label.azul, .phone-resumen span.color.azul {
+	background-image: url(../img/colores/azul.png);
 }
 
-.phone-details .color span.gold, .phone-resumen span.color.gold {
-	background-color: gold;
+.phone-details .color label.black, .phone-resumen span.color.black {
+	background-image: url(../img/colores/black.png);
+}
+
+.phone-details .color label.blanco, .phone-resumen span.color.blanco {
+	background-image: url(../img/colores/blanco.png);
+	box-shadow: 0px 0px 4px #888 inset;
+}
+
+.phone-details .color label.cafe, .phone-resumen span.color.cafe {
+	background-image: url(../img/colores/cafe.png);
+}
+
+.phone-details .color label.coral, .phone-resumen span.color.coral {
+	background-image: url(../img/colores/coral.png);
+}
+
+.phone-details .color label.dorado, .phone-resumen span.color.dorado {
+	background-image: url(../img/colores/dorado.png);
+}
+
+.phone-details .color label.gold, .phone-resumen span.color.gold {
+	background-image: url(../img/colores/gold.png);
+}
+
+.phone-details .color label.gris, .phone-resumen span.color.gris {
+	background-image: url(../img/colores/gris.png);
+}
+
+.phone-details .color label.jet-black, .phone-resumen span.color.jet-black {
+	background-image: url(../img/colores/jet-black.png);
+}
+
+.phone-details .color label.lima, .phone-resumen span.color.lima {
+	background-image: url(../img/colores/lima.png);
+}
+
+.phone-details .color label.metal-negro, .phone-resumen span.color.metal-negro {
+	background-image: url(../img/colores/metal-negro.png);
+}
+
+.phone-details .color label.negro-blanco, .phone-resumen span.color.negro-blanco {
+	background-image: url(../img/colores/negro-blanco.png);
+}
+
+.phone-details .color label.negro-grafito, .phone-resumen span.color.negro-grafito {
+	background-image: url(../img/colores/negro-grafito.png);
+}
+
+.phone-details .color label.negro, .phone-resumen span.color.negro {
+	background-image: url(../img/colores/negro.png);
+}
+
+.phone-details .color label.plata, .phone-resumen span.color.plata {
+	background-image: url(../img/colores/plata.png);
+}
+
+.phone-details .color label.plateado, .phone-resumen span.color.plateado {
+	background-image: url(../img/colores/plateado.png);
+}
+
+.phone-details .color label.rojo, .phone-resumen span.color.rojo {
+	background-image: url(../img/colores/rojo.png);
+}
+
+.phone-details .color label.rosa, .phone-resumen span.color.rosa {
+	background-image: url(../img/colores/rosa.png);
+}
+
+.phone-details .color label.rose-gold, .phone-resumen span.color.rose-gold {
+	background-image: url(../img/colores/rose-gold.png);
+}
+
+.phone-details .color label.silver, .phone-resumen span.color.silver {
+	background-image: url(../img/colores/silver.png);
+}
+
+.phone-details .color label.space-gray, .phone-resumen span.color.space-gray {
+	background-image: url(../img/colores/space-gray.png);
+}
+
+.phone-details .color label.verde, .phone-resumen span.color.verde {
+	background-image: url(../img/colores/verde.png);
 }
 
 .phone-details .capacidad {
@@ -825,6 +1026,7 @@ div.detalle-planes div.row-cell div.cell.radio input {
 .phone-details .capacidad input {
 	float: left;
 	margin: 4px 5px;
+	visibility: hidden;
 }
 
 .phone-details .capacidad label {
@@ -833,7 +1035,11 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	line-height: 20px;
 }
 
-.phone-details .capacidad > span, .phone-resumen .capacidad .datos {
+.phone-details .capacidad label:hover {
+	cursor: pointer;
+}
+
+.phone-details .capacidad > label.datos, .phone-resumen .capacidad .datos {
 	height: 48px; 
 	width: 48px;
 	float: left;
@@ -845,10 +1051,6 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	font-size: 12px; 
 }
 
-.phone-plan {
-	display: none;
-}
-
 .phone-resumen .capacidad .datos {
 	height: 36px; 
 	width: 36px;
@@ -858,12 +1060,12 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	font-size: 11px;
 }
 
-.phone-details .capacidad > span.active {
+.phone-details .capacidad > label.active {
 	background: #114b95;
 	color: #fff
 }
 
-.phone-details .capacidad > span span, .phone-resumen .capacidad .datos span {
+.phone-details .capacidad > label span, .phone-resumen .capacidad .datos span {
 	font-size: 20px; 
 	line-height: 26px;
 	text-align: center;
@@ -885,7 +1087,7 @@ div.detalle-planes div.row-cell div.cell.radio input {
 
 .phone-resumen .color, .phone-resumen .capacidad {
 	float: left;
-	width: 20%;
+	width: 23%;
 	margin: 4px;
 }
 
@@ -952,6 +1154,10 @@ div.detalle-planes div.row-cell div.cell.radio input {
 .phone-resumen .plan-details .row-cell .cell input[type="radio"] {
 	width: 16px; 
 	height: 16px;
+}
+
+.phone-plan {
+	display: none;
 }
 
 .contenedor > div > ul li .buttons {
@@ -1118,6 +1324,10 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	overflow: hidden;
 }
 
+.banners .sizer {
+	visibility: hidden;
+}
+
 .banners > a {
 	position: absolute;
 	top: 40%;
@@ -1196,9 +1406,12 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	margin-top: 90px;
 	background: #cb2879 url(../img/newsletter.jpg) center no-repeat;
 	background-size: cover;
-	height: 130px; 
-	padding: 35px 0px;
 	color: #fff;
+}
+
+.newsletter > div {
+	margin-top: 35px; 
+	margin-bottom: 35px;
 }
 
 .newsletter h2 {
@@ -1256,6 +1469,15 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	clear: both;
 }
 
+a[disabled="disabled"], a.disabled, div.disabled {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.contenedor > div > ul li div.formulario a.button.movil {
+	display: none;
+}
+
 /** Versión para móvil **/
 @media screen and (max-width: 769px) {
 	.titulo h1 {
@@ -1263,7 +1485,7 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	}
 
 	.newsletter {
-		padding: 10px 0px;
+		padding: 0px;
 	}
 
 	.newsletter form {
@@ -1272,7 +1494,7 @@ div.detalle-planes div.row-cell div.cell.radio input {
 	}
 
 	.newsletter h2 {
-		font-size: 20px;
+		font-size: 18px;
 	}
 
 	.contenedor > div div.phones ul li input {
@@ -1291,9 +1513,474 @@ div.detalle-planes div.row-cell div.cell.radio input {
 		line-height: 32px;
 		font-size: 12px;
 	}
+
+	.banners ul li {
+		background-size: contain;
+	}
+
+	.banners ul li a {
+		background-color: transparent;
+	}
+
+	.contenedor > div > ul li div.planes div.detalle-planes {
+		max-height: initial;
+	}
+
+	div.detalle-planes > div.row-cell div.cell {
+		height: 24px; 
+		line-height: 24px;
+	}
+
+	.contenedor > div div.phones > a.next-phone {
+		right: -30px;
+	}
+
+	.contenedor > div div.phones > a.prev-phone {
+		left: -30px;
+	}
 }
 
- a[disabled="disabled"], a.disabled {
-    pointer-events: none;
-    opacity: 0.7;
+@media screen and (max-width: 376px) {
+	.header {
+		height: 120px;
+	}
+
+	.header ul li {
+		background-size: cover;
+		background-position: center top;
+	}
+
+	.intro {
+		margin-top: 5px;
+		margin-bottom: 25px;
+	}
+
+	.intro h1 {
+		font-size: 24px;
+		margin: 20px auto 15px;
+	}
+
+	.intro #celular {
+		margin-top: 5px;
+	}
+
+	.intro #celular label {
+		font-size: 16px;
+	}
+
+	.intro #celular input {
+		margin-bottom: 5px;
+	}
+
+	.intro .button {
+		margin-top: 10px;
+	}
+
+	.banners {
+		background-color: transparent;
+		height: 210px;
+	}
+
+	.newsletter {
+		margin-top: 40px;
+	}
+
+	.newsletter > div {
+		margin-top: 15px; 
+		margin-bottom: 15px;
+	}
+
+	.newsletter form {
+		padding-bottom: 10px;
+	}
+
+	.newsletter form input {
+		margin: 8px auto;
+		width: 100%;
+	}
+
+	.newsletter form input[type="submit"] {
+		float: right;
+	}
+
+	.titulo {
+		margin: 20px auto 10px;
+	}
+
+	.titulo h1 {
+		font-size: 24px;
+		margin-bottom: 5px;
+	}
+
+	.numpaso h2 span {
+		width: 28px;
+	    height: 28px;
+	    font-size: 20px;
+	    line-height: 20px;
+	    border-width: 1px;
+	}
+
+	.numpaso h2 {
+		font-size: 14px;
+		margin-top: 10px;
+    	line-height: 18px;
+	}
+
+	.barra {
+		margin: 10px margin 5px;
+	}
+
+	.barra .slider.slider-horizontal {
+		width: 100%;
+		margin: 15px auto;
+	}
+
+	.barra .slider-tick {
+		width: 24px; 
+		height: 24px;
+	}
+
+	.barra .slider.slider-horizontal .slider-tick {
+		margin-top: -7px;
+	}
+
+	.contenedor {
+		margin-top: 20px;
+		margin-bottom: 40px;
+	}
+
+	.contenedor > div {
+		box-shadow: none;
+	}
+
+	.contenedor > div > ul > li {
+		width: 320px;
+	}
+
+	.contenedor > div > ul li.step-1 p {
+		font-size: 0px;
+	}
+
+	.contenedor > div > ul li.step-1 p:after {
+		content: 'Android';
+		width: 100%; 
+		text-align: center;
+		font-size: 14px;
+	}
+
+	.contenedor > div > ul li.step-1 .iphone p:after {
+		content: 'iPhone';
+	}
+
+	.contenedor > div > ul li a img {
+		max-height: 200px;
+	}
+
+	.contenedor > div > ul li p {
+		font-size: 12px;
+		margin-top: 0px;
+	}
+
+	.contenedor > div > ul li p b {
+		font-family: 'gotham-book';
+		font-weight: normal;
+	}
+
+	.contenedor > div > ul > li > div {
+		padding: 0px 10px;
+	}
+
+	.contenedor > div > ul li div.presupuesto {
+		padding: 0px;
+		margin-top: 30px;
+    	height: 50px;
+	}
+
+	.contenedor > div > ul li div.slider-tick-label {
+		padding: 0px 5px;
+	}
+
+	.contenedor a.button {
+		width: 120px; 
+		height: 28px; 
+		line-height: 28px;
+	}
+
+	/** Planes **/
+	div.detalle-planes.loading {
+		background-size: 15%;
+	}
+
+	.contenedor > div div.phones.loading {
+		background-size: 12%;
+	}
+
+	.contenedor > div > ul li div.planes {
+		margin-top: 10px;
+	}
+
+	.contenedor > div > ul li div.planes div.header {
+		height: 32px;
+	    background-size: 54%;
+	    padding: 0px;
+	    color: transparent;
+	    width: 15%;
+	    height: 28px;
+	}
+
+	.contenedor > div > ul li div.planes div.header.radio {
+		width: 8%;
+	}
+
+	.contenedor > div > ul li div.planes div.header.titulo-plan {
+		width: 32%;
+		background-size: 80%;
+	}
+
+	.contenedor > div > ul li div.planes div.header.redes {
+		background-size: contain;
+		background-position: center;
+	}
+
+	div.detalle-planes > div.row-cell div.cell {
+		width: 15%;
+		font-size: 7px;
+		line-height: 26px;
+		height: 26px;
+		margin: 2px auto;
+	}
+
+	div.detalle-planes div.row-cell div.cell.titulo-plan {
+		width: 32%;
+		font-size: 8px;
+		line-height: 13px;
+	}
+
+	div.detalle-planes div.row-cell div.cell .check {
+		height: 14px; 
+		width: 14px; 
+		margin: 6px auto;
+		min-height: initial;
+	}
+
+	div.detalle-planes div.row-cell div.cell.radio {
+		width: 8%;
+	}
+
+	div.detalle-planes div.row-cell div.cell.radio input {
+		left: 0px; 
+		width: 12px; 
+		height: 12px;
+	}
+
+	.contenedor > div > ul li#step-3 p {
+		margin-bottom: 5px;
+	}
+
+	.contenedor > div .marcas {
+		margin-top: 5px; 
+		height: 32px;
+	}
+
+	.contenedor > div .marcas ul {
+		height: 32px;
+	}
+
+	.contenedor > div div.phones > a.next-phone {
+		right: -3px;
+	}
+
+	.contenedor > div div.phones > a.prev-phone {
+		left: -3px;
+	}
+
+	.contenedor > div div.phones ul li {
+		height: 130px;
+	}
+
+	.contenedor > div div.phones ul li .nombre-phone {
+		margin-top: 10px;
+		font-size: 12px;
+		min-height: 24px;
+		margin-left: 2%;
+		width: 38%;
+		text-align: center;
+	}
+
+	.contenedor > div div.phones > a {
+		top: 25%;
+	}
+
+	.phone-image {
+		height: 160px;
+	}
+
+	.phone-image img {
+		max-width: initial;
+	    max-height: 100%;
+	    float: none;
+	}
+
+	.phone-details .phone-nombre, .phone-plan .phone-nombre {
+		font-size: 18px;
+		padding-bottom: 0px;
+	}
+
+	.phone-details .phone-sos {
+		margin: 1px auto;
+		padding-bottom: 2px;
+	}
+
+	.contenedor > div > ul li .phone-details p {
+		margin: 3px auto 2px;
+		font-family: 'gotham-bold';
+	}
+
+	.phone-details .phone-sos span {
+		font-size: 12px;
+	}
+
+	.phone-details .capacidad input {
+		width: 1px;
+		margin: 0px;
+	}
+
+	.phone-details .capacidad > label.datos, .phone-resumen .capacidad .datos {
+		width: 36px; 
+		height: 36px;
+		font-size: 8px;
+		margin: 5px;
+	}
+
+	.phone-details .capacidad > label span, .phone-resumen .capacidad .datos span {
+		font-size: 14px;
+	    line-height: 10px;
+	    margin-top: 6px;
+	}
+
+	.phone-details .color {
+		border: none;
+		margin-bottom: 0px;
+	}
+
+	.phone-details .color > div {
+		width: 50px;
+		margin-bottom: 3px;
+		height: 60px;
+	}
+
+	.phone-details .color label, .phone-resumen .color span.color {
+		height: 26px; 
+		width: 26px;
+		float: left;
+		margin-left: 11px;
+	}
+
+	.phone-details .color span {
+		font-size: 10px;
+	}
+
+	.contenedor #step-4 a.button {
+		margin-top: 5px;
+	}
+
+	.phone-resumen .capacidad .datos {
+		margin-top: 0px;
+	}
+
+	.phone-resumen .plan-details {
+		margin-top: 0px;
+	}
+
+	.phone-resumen .plan-details .header {
+		font-size: 11px;
+		height: 24px; 
+		line-height: 24px;
+	}
+
+	.phone-resumen .plan-details .header:nth-child(3) {
+		width: 26%;
+	}
+
+	.phone-resumen .plan-details .header:nth-child(5) {
+		width: 14%;
+	}
+
+	.phone-resumen .plan-details .row-cell .cell {
+		font-size: 11px;
+		line-height: 24px;
+	}
+
+	.phone-resumen .plan-details .row-cell .cell input[type="radio"] {
+		float: none;
+	}
+
+	.phone-resumen .plan {
+		height: 70px;
+	}
+
+	.contenedor > div > ul li div.planes {
+		margin-top: 5px;
+	}
+
+	.contenedor > div > ul li div.planes div span {
+		min-height: initial;
+		font-size: 12px;
+	}
+
+	.contenedor > div > ul li div.planes div span br {
+		display: none;
+	}
+
+	.contenedor #step-5 a.button {
+		margin-top: 8px; 
+		margin-bottom: 15px;
+	}
+
+	.contenedor > div > ul li div.planes .buttons {
+		margin-top: 20px;
+	}
+
+	.contenedor > div > ul li div.formulario {
+		margin-top: 5px;
+	}
+
+	.contenedor > div > ul li div.formulario .col-xs-12 input {
+		width: 98%;
+	}
+
+	.contenedor > div > ul li div.formulario input {
+		border-radius: 5px;
+		padding: 2px 5px;
+		font-size: 11px; 
+		line-height: 18px;
+		margin: 3px 0px 8px;
+		width: 96%;
+	}
+
+	.contenedor > div > ul li div.formulario .no-movil {
+		display: none;
+	}
+
+	.contenedor > div > ul li div.formulario input.small {
+		width: 48%;
+	}
+
+	.contenedor > div > ul li div.formulario input.small:first-child {
+		margin-right: 2%;
+	}
+
+	.contenedor > div > ul li div.formulario input[type="checkbox"] {
+		width: 16px; 
+		margin-right: 5px;
+	}
+
+	.contenedor > div > ul li div.formulario a.button.movil {
+		display: block;
+	}
+
+	.contenedor > div > ul li div.exito h2 {
+		font-size: 18px;
+	}
+
 }

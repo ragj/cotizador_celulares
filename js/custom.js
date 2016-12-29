@@ -22,7 +22,6 @@ $(document).ready(function(){
  	A = 65,
  	B = 66;
     var	code = [up,up,down,down,left,right,left,right,B,A];
-    //console.log(code);
 
     $(document)
     	.keydown(
@@ -47,18 +46,67 @@ $(document).ready(function(){
 
 	// Pasar intro 
 	$('.intro .button').on('click', function(){
-		$(this).closest('.intro').fadeOut('400', function(){
-			$('.row.titulo, .row.barra, .row.numpaso, .row.contenedor').show();
-		});
+		$('#celular').submit();		
 	});
+
+	$('#celular').validate({
+            rules: {
+                'numcelular': {
+                    digits: true,
+                    rangelength: [10, 10]
+                },
+            },
+            messages: {
+                'numcelular': {
+                    digits: 'Número inválido',
+                    rangelength: 'Número no válido'
+                }
+            },
+            errorElement: 'span',
+            success: 'valid',
+            submitHandler: function(form){
+                var $form = $(form), values = $form.serialize();
+
+                if( $form.find('#numcelular').val() != '' ){
+                    $.post('php/functions.php',{"accion":"registrarTelefono","numCelular":$form.find('#numcelular').val()}, function(data) { //ragj
+                		console.log(data);        
+                    });
+                }
+
+                $('.intro').fadeOut('400', function(){
+					$('.row.titulo, .row.barra, .row.numpaso, .row.contenedor').show();
+
+					$('#contenedor ul li#step-1').css({'width': $('#size-1').width()});
+				});
+            }
+        });
 
 	// Slider pasos
 	var mainSlider 	= 	$("#slider-pasos").slider({
-		tooltip: 'hide',
-		ticks: [1, 2, 3, 4, 5, 6, 7],
-		ticks_labels: ['1', '2', '3', '4', '5', '6', '7'],
-		ticks_snap_bounds: 0,
-		enabled: false
+							tooltip: 'hide',
+							ticks: [1, 2, 3, 4, 5, 6, 7],
+							ticks_labels: ['1', '2', '3', '4', '5', '6', '7'],
+							ticks_snap_bounds: 0,
+							enabled: false,
+							focus: true,
+							natural_arrow_keys: true
+						});
+
+	// Agregar número para slider y deshabilitar al inicio
+	$("#ex1Slider .slider-track .slider-tick").each(function(i, v){
+		var anchorClass = (i >= 1) ? 'class="disabled step-' + (i + 1) + '"' : '';
+		$(v).append('<a href="javascript:void(0);" ' + anchorClass + ' data-step="' + (i + 1) + '">' + (i + 1) + '</a>');
+	});
+
+	// Navegar desde la barra de pasos
+	$('#wrapper .barra').on('click', '#ex1Slider .slider-tick a:not(.disabled)', function(){
+		var $this = $(this), step = $this.data('step'), tick = $this.parent();
+
+		mainSlider.slider('setValue', step, true);
+		mainSlider.trigger('change', [event]);
+
+		// Deshabilitar siguientes pasos 
+		$this.closest('.slider-track').find('.slider-tick').filter( tick ).nextAll().find('a').addClass('disabled');
 	});
 
 	// Cambiar textos asociados a cada paso
@@ -75,11 +123,14 @@ $(document).ready(function(){
 		// Cambiar título de paso 
 		$('.numpaso h2').hide().filter('.step-' + newValue).fadeIn();
 
+
+		// Habilitar la navegación para el paso al que se avanzó
+		$('#ex1Slider .slider-track .slider-tick a.step-' + newValue).removeClass('disabled');
+
 		// Cambiar slide de contenedor principal 
 		var slideWidth = 0;
 
 		$('.contenedor > div li#step-' + newValue).prevAll().each(function(i, v){
-			// console.log( $(v).width() );
 			slideWidth += $(v).width();
 		});
 
@@ -87,80 +138,78 @@ $(document).ready(function(){
 
 		// Adecuar tamaño 
 		if( newValue == 1 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1').css({'height': 400})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12').css({'height': 400})
 			.find('li#step-' + newValue).css({'width': $('#size-1').width() });
 		}
 		else if( newValue == 2 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1').css({'height': 540})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12').css({'height': 585})
 			.find('li#step-' + newValue).css({'width': $('#size-2').width() });
 		}
 		else if( newValue == 3 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1').css({'height': 640})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12').css({'height': 640})
 			.find('li#step-' + newValue).css({'width': $('#size-2').width() });
 		}
 		else if( newValue == 4 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1').css({'height': 420})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12').css({'height': 490})
 			.find('li#step-' + newValue).css({'width': $('#size-3').width() });
 		}
 		else if( newValue == 5 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1').css({'height': 400})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12').css({'height': 400})
 			.find('li#step-' + newValue).css({'width': $('#size-1').width() });
 		}
 		else if( newValue == 6 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1').css({'height': 400})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12').css({'height': 420})
 			.find('li#step-' + newValue).css({'width': $('#size-3').width() });
 		}
 		else if( newValue == 7 ){
-			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1').css({'height': 350})
+			$('#contenedor > div:not(.size)').removeClass().addClass('col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12').css({'height': 350})
 			.find('li#step-' + newValue).css({'width': $('#size-1').width() });
 		}
 		
 	});
 
 	// Slider rango de precios 
-	$("#slider-presupuesto").slider({
-		tooltip: 'always',
-		ticks: [],
-		ticks_labels: ['|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|'],
-		ticks_tooltip: true,
-		enabled: true, 
-		formatter: function(value){
-			return '$ ' + value;
-		},
-	}).on('slideStop', function(ev){
-		var newVal = $('#slider-presupuesto').data('slider').getValue();
-		var marca = $('body').data('marca'), rango=1;
+	var presupuestoSlider = $("#slider-presupuesto").slider({
+								tooltip: 'always',
+								ticks: [],
+								ticks_labels: ['|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|'],
+								ticks_tooltip: true,
+								enabled: true, 
+								formatter: function(value){
+									return '$ ' + value;
+								},
+							}).on('slideStop', function(ev){
+								var newVal = $('#slider-presupuesto').data('slider').getValue();
+								var marca = $('body').data('marca'), rango = 1;
 
-		if( marca == "Iphone" ){
-			$('#step-3 div.marcas').hide();
-		}else{
-			$('#step-3 div.marcas').show();
-		}
+								if( marca == "Iphone" ){
+									$('#step-3 div.marcas').hide();
+								}else{
+									$('#step-3 div.marcas').show();
+								}
 
-		if(newVal < 400){
-			rango=1;
-		}
-		else if(newVal ==400 || newVal < 800){
-			rango=2;
-		}
-		else if(newVal==800 || newVal <1500){
-			rango=3;
-		}
-		else if( newVal > 1500 || newVal == 1500){
-			rango=4;
-		}
+								if(newVal < 400){
+									rango = 1;
+								}
+								else if(newVal ==400 || newVal < 800){
+									rango = 2;
+								}
+								else if(newVal==800 || newVal <1500){
+									rango = 3;
+								}
+								else if( newVal > 1500 || newVal == 1500){
+									rango = 4;
+								}
 
-		$('.detalle-planes').addClass('loading').find('.row-cell').remove();
-		$.post('/php/functions.php', { "accion": "ObtienePlanes",  "rango" : rango, "marca" : marca}, function(data){
-			$.each( data.plan, function(index, element){
-				// console.log(element.html);
-				$('.detalle-planes').removeClass('loading').append( element.html );
-			});
+								$('.detalle-planes').addClass('loading').find('.row-cell').remove();
+								$.post('php/functions.php', { "accion": "ObtienePlanes",  "rango" : rango, "marca" : marca}, function(data){
+									$.each( data.plan, function(index, element){
+										// console.log(element.html);
+										$('.detalle-planes').removeClass('loading').append( element.html );
+									});
 
-		});
-	});
-
-
+								});
+							});
 
 	// Paso 4 cambio de pantalla 
 	$("#step-4").on('click', '.button.interno:not(.back)', function(){
@@ -193,10 +242,12 @@ $(document).ready(function(){
 			mainSlider.slider('setValue', (step + 1), true);
 			mainSlider.trigger('change', [event]);
 
+			presupuestoSlider.slider('setValue', 300, true);
+
 			if( typeof reloadPlanes !== 'undefined' ){
 				$('.detalle-planes').addClass('loading').find('.row-cell').remove();
 
-				$.post('/php/functions.php', { "accion": "ObtienePlanes",  "rango" : 1, "marca" : marca}, function(data){
+				$.post('php/functions.php', { "accion": "ObtienePlanes",  "rango" : 1, "marca" : marca}, function(data){
 					if( data.exito ){
 						$('#step-2 a.button.disabled').removeClass('disabled');
 						$.each( data.plan, function(index, element){
@@ -218,25 +269,66 @@ $(document).ready(function(){
 				$('#step-3 div.marcas').hide();
 			}
 
-			$('#step-3 div.phones').addClass('loading').find('ul').empty();
+			// Validar si ya existe información 
+			if( $('#step-3 div.phones').find('ul li').length == 0 ){
 
-			$.post('/php/functions.php', { "accion" : "ObtieneEquiposRapido", "marca" : marca }, function(data) {
-				if( data.exito ){
-					$('#step-3 a.button.disabled').removeClass('disabled');
-					$.each( data.marcas, function(index, element){
-						$('#step-3 div.marcas ul').append( element.html );
-					});
-					$.each( data.modelos, function(index, element){
-						$('#step-3 div.phones').removeClass('loading').find('ul').append( element.html ).find('li:visible:first input').prop('checked', true);
-					});
+				$('#step-3 div.phones').addClass('loading');
+				$.post('php/functions.php', { "accion" : "ObtieneEquiposRapido", "marca" : marca }, function(data) {
+					if( data.exito ){
+						$('#step-3 a.button.disabled').removeClass('disabled');
+
+						$.each( data.marcas, function(index, element){
+							$('#step-3 div.marcas ul').append( element.html );
+						});
+
+						var phoneWidth = $('#step-3 div.phones .sizer').outerWidth();
+
+						$.each( data.modelos, function(index, element){
+							var phone = $(element.html);
+
+							if( marca == 'Android' ){
+								if( phone.hasClass('apple') ){
+									phone.hide();
+								}
+							}
+							else {
+								if( !phone.hasClass('apple') ){
+									phone.hide();
+								}	
+							}
+
+							$('#step-3 div.phones').removeClass('loading').find('ul').append( phone ).find('li')
+												   .css({'width': phoneWidth}).filter(':visible:first input').prop('checked', true);
+
+						});
+
+						setTimeout(function(){
+							widthPhones();
+						}, 100);
+
+					}
+				});
+			}
+			else {
+				if( marca == 'Android' ){
+					$('#step-3 div.phones ul li').hide().filter(':not(.apple)').show();
 				}
-			});
-				
-			
+				else {
+					$('#step-3 div.phones ul li').hide().filter('.apple').show();
+				}
+
+				$('#step-3 div.phones ul li:visible:first').find('input').prop('checked', true);
+
+				setTimeout(function(){
+					widthPhones();
+				}, 100);
+			}
+
 			var plan = $('input[type=radio]').val();
 
 			mainSlider.slider('setValue', (step + 1), true);
 			mainSlider.trigger('change', [event]);
+
 		} else if( step == 3 ){
 			
 
@@ -244,7 +336,7 @@ $(document).ready(function(){
 			var nombre = $('#step-3 .phones input:checked').parent().find('span.nombre-phone').text();
 			var imagen = $('#step-3 .phones input:checked').parent().find('img').attr('src');
 
-			$.post('/php/functions.php', { "accion" : "ObtieneCaracteristicasEquipo", "item" : item, "nombre" : nombre, "imagen" : imagen }, function(data) {
+			$.post('php/functions.php', { "accion" : "ObtieneCaracteristicasEquipo", "item" : item, "nombre" : nombre, "imagen" : imagen }, function(data) {
 
 				$('#step-4 div.phone-details').find('.phone-nombre, .phone-sos, .capacidad, .color').remove();
 				if( data.exito ){
@@ -268,9 +360,9 @@ $(document).ready(function(){
 
 	// Calcular tamaños
 	$('.banners ul li').each(function(i, v){
-		var banner = $(v), bannerWidth = $('.banners').width();
+		var banner = $(v), bannerWidth = $('.banners .sizer').outerWidth();
 
-		banner.css({'width': (bannerWidth / 3)});
+			banner.css({'width': bannerWidth});
 	});
 
 	// Carrusel para banners
@@ -300,31 +392,102 @@ $(document).ready(function(){
 		width: '60%'
 	});
 
+	// Flechas para mover entre teléfonos
+	function widthPhones(){
+		var phonesPerPage = 2;
+
+		if( $(window).width() <= 677 ){
+			phonesPerPage = 3;
+		}
+
+		var phones = $('#step-3 div.phones ul li:visible'), numPhones = Math.ceil(phones.closest('.inner-phones').outerWidth() / phones.outerWidth()), 
+			numPages = Math.ceil( phones.length / (numPhones * phonesPerPage) ), widthContent = numPages * (phones.outerWidth() * numPhones); 
+
+			phones.parent().attr('data-pages', numPages ).attr('data-position', 1).css( {'width': (widthContent + 1), 'margin-left': 0} );
+			phones.parent().data('position', 1);
+			phones.parent().data('pages', numPages);
+
+			// Mostrar flechas 
+			phones.closest('.phones').find('> a').fadeOut();
+			if( phones.length > (numPhones * phonesPerPage) ){
+				phones.closest('.phones').find('> a.next-phone').fadeIn();
+			}
+	}
+
+	$('#step-3').on('click', '.phones > a', function(e){
+		var $this = $(this), phones = $this.closest('.phones').find('ul li:visible'),
+			contentPhones = phones.parent(), numPhones = phones.closest('.inner-phones').outerWidth() / phones.outerWidth(),
+			widthContent =  phones.outerWidth() * numPhones;
+
+		if( contentPhones.is(':animated') ) {
+			return false;
+		}
+
+		// Previa 
+		var position = contentPhones.data('position'), numPages = contentPhones.data('pages');
+
+		if( $this.hasClass('prev-phone') ){ 
+			if( position > 1 ) {
+				contentPhones.animate({'margin-left': '-' + widthContent * (position - 2 ) + 'px'}, 600, 'linear', function(){
+					contentPhones.data('position', (position - 1));
+
+					if( position <= 2 ){
+						$this.hide();
+					}
+				});
+
+				$this.parent().find('a.next-phone').show();
+			}
+		}
+		else { 			
+			if( position < numPages ){
+				contentPhones.animate({'margin-left': '-' + widthContent * position + 'px'}, 600, 'linear', function(){
+					contentPhones.data('position', (position + 1));
+
+					if( position + 1 == numPages ){
+						$this.hide();
+					}
+				});
+
+				$this.parent().find('a.prev-phone').show();
+			}
+		}
+
+	});
+
 	$('#step-3 .marcas ul').on('click', 'li a', function(event) {
 		event.preventDefault();
+
 		var marca = $(this).parent(), nombre_marca = marca.attr('class').trim();
 		$('#step-3 .phones li').hide().filter( "." + nombre_marca ).show().first().find('input').prop('checked', true);
-		console.log(marca);
 		$('#step-3 .marcas li').removeClass('active').filter( marca ).addClass('active');
+
+		setTimeout(function(){
+			widthPhones();
+		}, 100);
 	});
 
 	$('#step-4 .phone-details').on('change', 'input.capacidad', function(event) {
 		event.preventDefault();
-		var memoria = $(this).val();
-		var modelo = $('.phone-details .phone-nombre').text();
+		var $this = $(this), memoria = $this.val(), modelo = $('.phone-details .phone-nombre').text();
+
+		// Activar etiqueta 
+		$this.closest('div.capacidad').find('label').removeClass('active').filter('[for="' + $this.attr('id') + '"]').addClass('active');
 		
 		$('.phone-plan .datos span.gb').text(memoria);
 		$('.phone-plan .phone-nombre').text(modelo);
 		$('.phone-details div.color').remove();
-		$.post('/php/functions.php', { "accion" : "ObtieneColordeModeloMemoriaAK", "modelo" : modelo, "memoria" : memoria }, function(data) {
+		$.post('php/functions.php', { "accion" : "ObtieneColordeModeloMemoriaAK", "modelo" : modelo, "memoria" : memoria }, function(data) {
 			$(data.html).insertBefore('#step-4 .phone-details .buttons.col-md-12');
 		});
 	});
 
 	$('#step-4 .phone-details').on('change', 'input.variante', function(event) {
-		var color = $(this).data('variante');
+		var $this = $(this), color = $this.data('variante');
 		$('.phone-plan span.color').removeClass().addClass( 'color '+ color );
 		$('#step-4 a.button').removeClass('disabled');
+
+		$this.closest('div.color').find('label').removeClass('active').filter('[for="' + $this.attr('id') + '"]').addClass('active');
 	});
 
 	$('#step-4 .phone-plan').on('change', 'input.plan', function(event) {
@@ -345,7 +508,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		var plan = $('#step-2 .detalle-planes input:checked').val()
 		var item = $('#step-4 .phone-details .color input:checked').val();
-		$.post('/php/functions.php', { "accion" : "ObtieneResultadosBusqueda", "plan" : plan, "item" : item }, function(data) {
+		$.post('php/functions.php', { "accion" : "ObtieneResultadosBusqueda", "plan" : plan, "item" : item }, function(data) {
 			$('#step-4 .phone-plan .plan-details').html( "" );
 			if( data.exito ){
 				$('#step-4 .phone-plan .plan-details').html( data.html );
@@ -362,7 +525,7 @@ $(document).ready(function(){
 	});
 
 	// Enviar formulario de datos
-	$('#datos-clientes').on('click', 'a.button', function(e){
+	$('#step-6').on('click', 'a.button.interno', function(e){
 		e.preventDefault();
 
 		$('#datos-clientes').submit();	
@@ -444,7 +607,7 @@ $(document).ready(function(){
 		submitHandler: function(form){
 			var $form = $(form), values = $form.serialize();
 
-			$.post('/php/functions.php', values, function(data) {
+			$.post('php/functions.php', values, function(data) {
 				if( data.exito ){
 					$('#folio').text( data.tramite[0] ); 
 					mainSlider.slider('setValue', 7, true);

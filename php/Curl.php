@@ -1,5 +1,5 @@
 <?php 
-
+require_once('../Config/constantes.php');
 
 Class Curl
 {
@@ -12,7 +12,7 @@ Class Curl
 	function __construct( $url )
 	{
 		$this->curl 	= curl_init();
-		$this->url_curl = $url;
+		$this->url_curl = URI.$url;
 		$this->port 	= $this->getPort();
 		
 		curl_setopt_array($this->curl, array(

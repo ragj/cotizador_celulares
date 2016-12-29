@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Cotizador Cencel</title>
 
@@ -34,9 +34,15 @@
             </div>
 
             <div class="row intro">
-                <div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1">
+                <div class="col-lg-8 col-lg-offset-2 col-sm-12 col-xs-12">
                     <h1>¡Bienvenido a Cencel!</h1>
                     <p>La manera más fácil de cotizar tu smartphone con TELCEL</p>
+
+                    <form id="celular" class="col-lg-8 col-lg-offset-2 col-xs-12">
+                        <label for="numcelular">Compártenos tu número de celular </label>
+                        <input name="numcelular" id="numcelular" type="text"/>
+                    </form>
+
                     <a class="button" href="javascript:void(0);">
                         Comenzar 
                         <i class="fa fa-angle-double-right" aria-hidden="true"></i>
@@ -45,20 +51,20 @@
             </div>
 
     		<div class="row titulo">
-    			<div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1">
+    			<div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
     				<h1>Cotiza un plan a tu medida</h1>
     				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
     			</div>
     		</div>
     		<!-- Barra de avance -->
     		<div class="row barra">
-    			<div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1">
+    			<div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
     				<input id="slider-pasos" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="7" data-slider-step="1" data-slider-value="1" data-slider-handle="round"/>
     			</div>
     		</div>
     		<!-- Título paso actual -->
     		<div class="row numpaso">
-    			<div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1">
+    			<div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
 	    			<h2 class="step-1">
 	    				<span>1</span>
 	    				Selecciona el plan que buscas
@@ -91,15 +97,15 @@
     		</div>
     		<!-- Sección principal -->
     		<div class="row contenedor" id="contenedor">
-                <div class="size col-md-6 col-sm-10" id="size-1"></div>
-                <div class="size col-md-10 col-sm-10" id="size-2"></div>
-                <div class="size col-md-8 col-sm-10" id="size-3"></div>
+                <div class="size col-md-6 col-sm-10 col-xs-12" id="size-1"></div>
+                <div class="size col-md-10 col-sm-10 col-xs-12" id="size-2"></div>
+                <div class="size col-md-8 col-sm-10 col-xs-12" id="size-3"></div>
 
-    			<div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+    			<div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12">
     				<ul>
                         <!-- Paso Uno -->
     					<li class="step step-1" id="step-1">
-                            <div class="col-md-4 col-md-offset-1 col-sm-6">
+                            <div class="col-md-4 col-md-offset-1 col-sm-6 col-xs-6 android">
                                 <p>Los <b>mejores smartsphones</b> <br> del mercado a tu alcance</p>
                                 <a class="image" href="javascript:void(0);" data-step="1" data-marca="Android" data-reload="1">
                                     <img src="img/tel_android.png">
@@ -109,7 +115,7 @@
                                     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
                                 </a>
                             </div>
-                            <div class="col-md-4 col-md-offset-2 col-sm-6">
+                            <div class="col-md-4 col-md-offset-2 col-sm-6 col-xs-6 iphone">
                                 <p>Los <b>iPhone de tus sueños</b> <br> está aquí</p>
                                 <a class="image" href="javascript:void(0);" data-step="1" data-marca="Iphone" data-reload="1">
                                     <img src="img/tel_iphone.png">
@@ -122,13 +128,13 @@
                         </li>
                         <!-- Paso dos -->
     					<li class="step step-2" id="step-2">
-                            <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-                                <p><b>Selecciona en la barra</b> tu presupuesto y te <b> mostraremos los mejores planes </b> que se adapten a él </p>
+                            <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                                <p><b>Selecciona en la barra</b> tu presupuesto y te <b> mostraremos los planes que mejor </b> se adapten a él </p>
 
-                                <div class="presupuesto col-md-12">
+                                <div class="presupuesto">
                                     <input id="slider-presupuesto" data-slider-id='ex2Slider' type="text" data-slider-min="0" data-slider-max="1500" data-slider-step="100" data-slider-value="300" data-slider-handle="round"/>
                                 </div>
-                                <div class="planes col-md-12">
+                                <div class="planes col-md-12 col-xs-12">
                                     <!-- Encabezados -->
                                     <div class="header titulo-plan"></div>
                                     <div class="header minutos">Minutos incluidos</div>
@@ -142,7 +148,7 @@
                                         
                                     </div>
                                 </div>
-                                <div class="buttons col-md-12 col-sm-12">
+                                <div class="buttons col-md-12 col-sm-12 col-xs-12">
                                     <a class="button back" href="javascript:void(0);" data-step="0">
 <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar </a>
                                     <a class="button disabled" href="javascript:void(0);" data-step="2">Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
@@ -150,18 +156,23 @@
                             </div>
                         </li>
     					<li class="step step-3" id="step-3">
-                            <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+                            <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
                                 <p>Tenemos <b>las mejores marcas de smartphones</b> para ti </p>
                             
                                 <div class="marcas">
-                                    <ul>
-                                        
-                                    </ul>
+                                    <ul></ul>
                                 </div>
                                 <div class="phones">
-                                    <ul>
-                                        
-                                    </ul>
+                                    <div class="sizer col-md-4 col-sm-4 col-xs-6"></div>
+                                    <a href="javascript:void(0);" class="prev-phone">
+                                        <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="javascript:void(0);" class="next-phone">
+                                        <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="inner-phones">
+                                        <ul></ul>
+                                    </div>
                                 </div>
                                 <div class="buttons col-md-12 col-sm-12">
                                     <a class="button back" href="javascript:void(0);" data-step="1">
@@ -171,18 +182,18 @@
                             </div>
                         </li>
     					<li class="step step-4" id="step-4">
-                            <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-                                <div class="col-md-5 col-sm-5">
-                                    <div class="phone-image col-md-12">
+                            <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                    <div class="phone-image col-md-12 col-xs-12">
                                         <img src=""/>
                                     </div>
                                 </div>
-                                <div class="col-md-7 col-sm-7">
+                                <div class="col-md-7 col-sm-7 col-xs-12">
                                     <!-- Detalles del teléfono -->
                                     <div class="phone-details col-md-12">
                                         
 
-                                        <div class="buttons col-md-12">
+                                        <div class="buttons col-md-12 col-sm-12 col-xs-12">
                                             <a class="button back" href="javascript:void(0);" data-step="2">
                                                 <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar
                                             </a>
@@ -198,7 +209,7 @@
                                                 <span>Color </span> 
                                                 <span class="color"></span>
                                             </div>
-                                            <div class="capacidad">
+                                            <div class="capacidad col-xs-6">
                                                 <span>Capacidad </span> 
                                                 <span class="datos"><span class="gb"></span> Gb</span>
                                             </div>
@@ -208,7 +219,7 @@
                                                 
                                             </div>
                                         </div>
-                                        <div class="buttons col-md-12 col-sm-12">
+                                        <div class="buttons col-md-12 col-sm-12 col-xs-12">
                                             <a class="button back interno" href="javascript:void(0);" data-step="2">
                                                 <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar </a>
                                             <a class="button disabled" href="javascript:void(0);" data-step="4">Continuar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
@@ -219,25 +230,25 @@
                             </div>
                         </li>
     					<li class="step step-5" id="step-5">
-                            <div class="planes col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-                                <div class="col-md-6 col-sm-6">
+                            <div class="planes col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                     <span>Disfruta tu nuevo plan <br> a la medida</span>
                                     <a class="button nueva" data-accion="nueva" href="javascript:void(0);" data-step="5">Nueva línea</a>
                                 </div>
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                     <span>Tu plan ha expirado</span>
                                     <a class="button renovacion" data-accion="renovacion" href="javascript:void(0);" data-step="5">Renovación</a>
                                 </div>
                                 <div class="clear"></div>
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                     <span>Existen nuevas posibilidades <br> a tus necesidades</span>
                                     <a class="button cambio" data-accion="cambio" href="javascript:void(0);" data-step="5">Cambio de plan</a>
                                 </div>
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                     <span>Cambia de compañia <br> sin perder tu número</span>
                                     <a class="button porta" data-accion="portabilidad" href="javascript:void(0);" data-step="5">Portabilidad</a>
                                 </div>
-                                <div class="buttons col-md-12 col-sm-12">
+                                <div class="buttons col-md-12 col-sm-12 col-xs-12">
                                     <a class="button back" href="javascript:void(0);" data-step="3">
     <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar </a>
                                 </div>
@@ -246,69 +257,69 @@
     					<li class="step step-6" id="step-6">
                             <div class="formulario col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                                 <form id="datos-clientes">
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
                                         <input type="text" name="nombre" class="input-form" placeholder="Nombre(s) *" required>
                                         <input type="hidden" name="accion" value="registrar">
                                         <input type="hidden" name="plan" value="">
                                         <input type="hidden" name="item" value="">
                                         <input type="hidden" name="tramite" value="">
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-4 col-sm-4 col-xs-6">
                                         <input type="text" name="apaterno" class="input-form" placeholder="Apellido Paterno *" required>
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-4 col-sm-4 col-xs-6">
                                         <input type="text" name="amaterno" class="input-form" placeholder="Apellido Materno *" required>
                                     </div>
                                     <div class="clear"></div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-4 col-sm-4 col-xs-6">
                                         <input type="text" name="tel_cel" class="input-form" placeholder="Tel Celular *" required>
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-4 col-sm-4 col-xs-6">
                                         <input type="text" name="tel_fijo" class="input-form" placeholder="Tel Fijo *" required>
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
                                         <input type="email" name="email" class="input-form" placeholder="Correo electrónico *" required>
                                     </div>
                                     <div class="clear"></div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
                                         <input type="text" name="calle" class="input-form" placeholder="Calle *" required>
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
                                         <input type="text" name="num_ext" class="input-form small" placeholder="No. Ext. *" required>
                                         <input type="text" name="num_int" class="input-form small" placeholder="No. Int.">
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-4 col-sm-4 col-xs-6">
                                         <input type="text" name="cp" class="input-form" placeholder="Código Postal *" required>
                                     </div>
-                                    <div class="clear"></div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="clear no-movil"></div>
+                                    <div class="col-md-4 col-sm-4 col-xs-6">
                                         <input type="text" name="colonia" class="input-form" placeholder="Colonia *" required>
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-4 col-sm-4 col-xs-6">
                                         <input type="text" name="municipio" class="input-form" placeholder="Municio *" required>
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-4 col-sm-4 col-xs-6">
                                         <input type="text" name="estado" class="input-form" placeholder="Estado *" required>
                                     </div>
                                     <div class="clear"></div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
                                         <input type="checkbox" name="terms" value="1" required/>
                                         <label>
                                             Acepto <a href="http://www.cencel.com.mx/privacidad.html" target="_blank">Política de privacidad</a>
                                         </label>
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-4 col-sm-4 col-xs-12 no-movil">
                                         <a class="button interno" href="javascript:void(0);">Enviar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                     </div>
                                 </form>
-                                <div class="buttons col-md-12 col-sm-12">
-                                    <a class="button back" href="javascript:void(0);" data-step="4">
-    <i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar </a>
+                                <div class="buttons col-md-12 col-sm-12 col-xs-12">
+                                    <a class="button back" href="javascript:void(0);" data-step="4"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar </a>
+                                    <a class="button interno movil" href="javascript:void(0);">Enviar <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                 </div>
                             </div>               
                         </li>
     					<li class="step step-7" id="step-7">
-                            <div class="exito col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+                            <div class="exito col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
                                 <h2>Tu trámite se ha generado correctamente con el </h2>
                                 <h3>Folio: <span id="folio"></span></h3>
                                 <h4>Recuerda tener tu folio a la mano</h4>
@@ -320,13 +331,14 @@
 
             <!-- Banner de promociones --> 
             <div class="row banners" id="banners">
+                <div class="sizer col-lg-4 col-md-12"></div>
                 <ul>
-                    <li class="col-md-4 banner-1"><a href="img/promos/promo1.jpg"></a></li>
-                    <li class="col-md-4 banner-2 active"><a href="img/promos/promo2.jpg"></a></li>
-                    <li class="col-md-4 banner-3"><a href="img/promos/promo3.jpg"></a></li>
-                    <li class="col-md-4 banner-4"><a href="img/promos/promo4.jpg"></a></li>
-                    <li class="col-md-4 banner-5"><a href="img/promos/promo5.jpg"></a></li>
-                    <li class="col-md-4 banner-6"><a href="img/promos/promo6.jpg"></a></li>
+                    <li class="banner-1"><a href="img/promos/promo1.jpg"></a></li>
+                    <li class="banner-2 active"><a href="img/promos/promo2.jpg"></a></li>
+                    <li class="banner-3"><a href="img/promos/promo3.jpg"></a></li>
+                    <li class="banner-4"><a href="img/promos/promo4.jpg"></a></li>
+                    <li class="banner-5"><a href="img/promos/promo5.jpg"></a></li>
+                    <li class="banner-6"><a href="img/promos/promo6.jpg"></a></li>
                 </ul>
                 <a href="javascript:void(0);" class="prev-banner"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
                 <a href="javascript:void(0);" class="next-banner"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
@@ -387,7 +399,7 @@
                 });
                 
             }
-        });    
+        });
     </script>
 
   </body>
